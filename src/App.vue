@@ -1,22 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" width="120px" style="padding: 1em;" src="./assets/logo.png">
-    <Builder/>
+    <router-view/>
   </div>
 </template>
 
-<script>
-import Builder from './components/Builder.vue';
-
-export default {
-  name: 'App',
-  components: {
-    Builder,
-  },
-};
-</script>
-
 <style lang="scss">
+@import '@/styles/variables.scss';
+@import '@/styles/utils.scss';
+
+html,body {
+  background-color: $white;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -24,6 +18,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #FCFCFC;
 }
 </style>
