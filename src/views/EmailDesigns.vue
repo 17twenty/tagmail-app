@@ -13,6 +13,7 @@
         @edit="handleEdit(mail)"
         @duplicate="handleDuplicate(mail)"
         @rename="handleRename(mail)"
+        @delete="handleDelete(mail)"
       />
     </div>
   </div>
@@ -65,6 +66,9 @@ export default {
     },
     handleRename(mail) {
       console.log('rename', mail);
+    },
+    handleDelete(mail) {
+      console.log('delete', mail);
     },
   },
 };

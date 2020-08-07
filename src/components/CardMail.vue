@@ -24,6 +24,9 @@
       <a @click="emitDuplicate">Duplicate Template</a>
       <a @click="emitRename">Rename Template</a>
     </div>
+    <div class="mail-card-actions">
+      <a @click="emitDelete">Delete Template</a>
+    </div>
   </div>
 </template>
 
@@ -49,6 +52,9 @@ export default {
     emitRename() {
       this.$emit('rename');
     },
+    emitDelete() {
+      this.$emit('delete');
+    },
   },
 };
 </script>
@@ -61,6 +67,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1em;
 }
 .metadata {
   display: flex;
