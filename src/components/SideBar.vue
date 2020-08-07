@@ -2,10 +2,10 @@
   <aside class="sidebar">
     <p class="subtitle">{{business.businessName}}</p>
     <div class="sidebar-items">
-      <router-link to="/">Email Designs</router-link>
-      <router-link to="/email-designs">Sending Preferences</router-link>
-      <router-link to="/email-designs">Theme / Logo / Branding</router-link>
-      <router-link to="/email-designs">Stats and Metrics</router-link>
+      <router-link to="/dashboard/email-designs">Email Designs</router-link>
+      <router-link to="/sending-preferences">Sending Preferences</router-link>
+      <router-link to="/dashboard/theme-logo-branding">Theme / Logo / Branding</router-link>
+      <router-link to="/stats-and-metrics">Stats and Metrics</router-link>
     </div>
     <div class="sidebar-end">
       <router-link to="/logout">Logout</router-link>

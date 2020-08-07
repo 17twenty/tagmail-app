@@ -9,6 +9,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    redirect: {
+      name: routeNames.EMAIL_DESIGNS,
+    },
+  },
+  {
     path: '/editor',
     name: 'Editor',
     component: Editor,
@@ -19,7 +25,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
   },
   {
-    path: '/',
+    path: '/dashboard',
     component: Dashboard,
     props: true,
     beforeEnter(to, from, next) {
@@ -30,14 +36,26 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: routeNames.DASHBOARD,
+        path: 'email-designs',
+        name: routeNames.EMAIL_DESIGNS,
+        beforeEnter(to, from, next) {
+          to.params.business = {
+            businessName: 'QuickaPay',
+          };
+          next();
+        },
         component: () => import(/* webpackChunkName: "email-designs" */ '../views/EmailDesigns.vue'),
       },
       {
-        path: '/googo',
-        name: 'foffo',
-        component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+        path: 'theme-logo-branding',
+        name: routeNames.THEME_LOGO_BRANDING,
+        beforeEnter(to, from, next) {
+          to.params.business = {
+            businessName: 'QuickaPay',
+          };
+          next();
+        },
+        component: () => import(/* webpackChunkName: "theme-logo-branding" */ '../views/ThemeLogoBranding.vue'),
       },
     ],
   },
