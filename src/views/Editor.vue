@@ -16,3 +16,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.editor {
+  text-align: center;
+}
+</style>

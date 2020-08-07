@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="editor-container">
     <div class="left">
       <div class="centered">
         <Element
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.editor-container {
   height: 90vh;
   display: flex;
   left: 0;
