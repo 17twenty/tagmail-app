@@ -5,18 +5,17 @@
 </template>
 
 <style lang="scss">
-@import '@/styles/variables.scss';
 @import '@/styles/utils.scss';
-
-html,body {
-  background-color: $white;
-}
+@import '@/styles/core.scss';
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+}
+.label {
+  font-size: small;
 }
 </style>
