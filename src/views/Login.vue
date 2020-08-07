@@ -4,7 +4,10 @@
       <img class="logo" alt="tagmail logo" width="120px" style="" src="@/assets/logo.png" />
       <b-tabs expanded v-model="activeTab" destroy-on-hide>
         <b-tab-item label="Login">
-          <FormLogin :form="login" />
+          <FormLogin
+            @valid-submit="handleSubmit"
+            :isLoading="isLoading"
+            :form="login" />
         </b-tab-item>
         <b-tab-item label="Register">
           <Register />
@@ -26,12 +29,18 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeTab: 0,
       login: {
         email: '',
         password: '',
       },
     };
+  },
+  methods: {
+    handleSubmit() {
+      console.log('login event');
+    },
   },
 };
 </script>

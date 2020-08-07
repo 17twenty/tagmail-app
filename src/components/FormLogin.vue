@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="emitSubmit">
     <b-field label="Username / Email">
       <b-input required type="email" v-model="form.email" :value="form.email"></b-input>
     </b-field>
@@ -36,6 +36,11 @@ export default {
     form: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    emitSubmit() {
+      this.$emit('valid-submit');
     },
   },
 };
