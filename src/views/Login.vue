@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <div class="login-card card-shadow">
+    <div :class="['login-card',  'card-shadow']">
       <img class="logo" alt="tagmail logo" width="120px" style="" src="@/assets/logo.png">
       <Register />
     </div>
