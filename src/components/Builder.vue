@@ -122,4 +122,7 @@ export default {
   position: relative;
   flex: 1;
 }
+#preview{
+  height: 100%;
+}
 </style>
