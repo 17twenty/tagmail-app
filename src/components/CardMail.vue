@@ -24,7 +24,7 @@
       <a @click="emitDuplicate">Duplicate Template</a>
       <a @click="emitRename">Rename Template</a>
     </div>
-    <div class="mail-card-actions">
+    <div class="mail-card-actions delete-action">
       <a @click="emitDelete">Delete Template</a>
     </div>
   </div>
@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .mail-card {
   padding: 1em;
 }
@@ -87,6 +89,11 @@ export default {
   flex-direction: column;
   & a {
     font-size: 12px;
+  }
+}
+.delete-action {
+  & a {
+    color: $danger;
   }
 }
 </style>
