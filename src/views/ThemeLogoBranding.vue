@@ -5,6 +5,19 @@
 <script>
 export default {
   name: 'ThemeLogoBranding',
+  data() {
+    return {
+      brandLogo: '',
+      logoSize: '',
+      borderRadius: '',
+      mutedText: '',
+      backgroundColour: '',
+      highlightColour: '',
+      defaultText: '',
+      titleText: '',
+      borderColour: '',
+    };
+  },
 };
 </script>
 
