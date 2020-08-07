@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="builder-container">
     <div class="left">
       <div class="centered">
         <Element
@@ -91,11 +91,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.builder-container {
   height: 90vh;
+  width: 97%;
   display: flex;
   left: 0;
   right: 0;
+  text-align: center;
 }
 /* Control the left side */
 .left {
@@ -119,5 +121,8 @@ export default {
   background-color: #fcfcfc;
   position: relative;
   flex: 1;
+}
+#preview{
+  height: 100%;
 }
 </style>
