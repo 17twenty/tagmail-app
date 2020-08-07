@@ -9,8 +9,13 @@
         />
       <FormBusinessDetails
         key="business"
+        @valid-submit="nextStep"
         v-if="step === 2"
         :form="forms.business"
+      />
+      <RegisterAlmostThere
+        key="almost-there"
+        v-if="step === 3"
       />
     </transition>
   </div>
@@ -19,12 +24,14 @@
 <script>
 import FormPersonalDetails from '@/components/FormRegisterPersonalDetails.vue';
 import FormBusinessDetails from '@/components/FormRegisterBusinessDetails.vue';
+import RegisterAlmostThere from '@/components/RegisterAlmostThere.vue';
 
 export default {
-  name: 'Card',
+  name: 'RegisterContainer',
   components: {
     FormPersonalDetails,
     FormBusinessDetails,
+    RegisterAlmostThere,
   },
   data() {
     return {
@@ -49,7 +56,7 @@ export default {
   },
   methods: {
     nextStep() {
-      this.step = 2;
+      this.step += 1;
     },
   },
 };
