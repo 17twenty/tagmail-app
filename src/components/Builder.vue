@@ -93,7 +93,7 @@ export default {
 <style scoped>
 .builder-container {
   height: 90vh;
-  width: 90%;
+  width: 97%;
   display: flex;
   left: 0;
   right: 0;
