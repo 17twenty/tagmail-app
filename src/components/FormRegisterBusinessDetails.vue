@@ -9,19 +9,19 @@
     <b-field label="Address Line 2 (optional)">
       <b-input v-model="form.addressLine2" :value="form.addressLine2"></b-input>
     </b-field>
-    <b-field grouped>
-      <b-field label="City">
+    <b-field grouped expanded>
+      <b-field expanded label="City">
         <b-input required v-model="form.city" :value="form.city"></b-input>
       </b-field>
-      <b-field label="State">
+      <b-field expanded label="State">
         <b-input required v-model="form.state" :value="form.state"></b-input>
       </b-field>
     </b-field>
-    <b-field grouped>
-      <b-field label="Zip / Postal Code">
+    <b-field grouped expanded>
+      <b-field expanded label="Zip / Postal Code">
         <b-input required v-model="form.postCode" :value="form.postCode"></b-input>
       </b-field>
-      <b-field label="Country">
+      <b-field expanded label="Country">
         <b-input required v-model="form.country" :value="form.country"></b-input>
       </b-field>
     </b-field>
@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     emitSubmit() {
-      console.log('emit event');
       this.$emit('valid-submit');
     },
   },

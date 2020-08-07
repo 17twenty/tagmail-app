@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="register-container">
     <transition name="slide-fade" mode="out-in">
       <FormPersonalDetails
         key="personal"
@@ -55,4 +55,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.register-container {
+  width: 100%;
+}
+</style>
