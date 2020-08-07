@@ -19,7 +19,7 @@
 
 <script>
 import FormLogin from '@/components/FormLogin.vue';
-import Register from '@/components/Register.vue';
+import Register from '@/containers/Register.vue';
 
 export default {
   name: 'Login',
