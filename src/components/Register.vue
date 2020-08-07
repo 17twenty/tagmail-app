@@ -1,19 +1,34 @@
 <template>
   <div>
-    <FormPersonalDetails :form="forms.personal" />
+    <transition name="slide-fade" mode="out-in">
+      <FormPersonalDetails
+        key="personal"
+        @valid-submit="nextStep"
+        v-if="step === 1"
+        :form="forms.personal"
+        />
+      <FormBusinessDetails
+        key="business"
+        v-if="step === 2"
+        :form="forms.business"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
 import FormPersonalDetails from '@/components/FormRegisterPersonalDetails.vue';
+import FormBusinessDetails from '@/components/FormRegisterBusinessDetails.vue';
 
 export default {
   name: 'Card',
   components: {
     FormPersonalDetails,
+    FormBusinessDetails,
   },
   data() {
     return {
+      step: 1,
       forms: {
         personal: {
           email: '',
@@ -32,9 +47,12 @@ export default {
       },
     };
   },
+  methods: {
+    nextStep() {
+      this.step = 2;
+    },
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

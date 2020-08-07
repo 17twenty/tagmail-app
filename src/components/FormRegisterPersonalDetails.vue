@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     emitSubmit() {
-      this.$emit('submit');
+      this.$emit('valid-submit');
     },
   },
 };
