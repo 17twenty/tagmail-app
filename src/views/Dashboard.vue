@@ -4,7 +4,6 @@
     <div class="page">
       <SideBar :business="business" />
       <main class="main-view card-shadow">
-        <h1>main view</h1>
         <transition name="slide-fade" mode="out-in">
           <router-view></router-view>
         </transition>

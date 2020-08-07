@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
-    <div class="header">
+  <div class="card mail-card">
+    <div class="mail-card-header">
       <i class="far fa-envelope fa-3x"></i>
-      <h1 class="title">{{mail.templateName}}</h1>
+      <p class="subtitle">{{mail.templateName}}</p>
     </div>
     <div class="metadata">
       <div class="row">
@@ -17,6 +17,12 @@
         <p>Last Modified:</p>
         <p>{{mail.lastUpdated}}</p>
       </div>
+    </div>
+    <div class="mail-card-actions">
+      <a href="">Get Code</a>
+      <a href="">Edit Template</a>
+      <a href="">Duplicate Template</a>
+      <a href="">Rename Template</a>
     </div>
   </div>
 </template>
@@ -33,6 +39,33 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.mail-card {
+  padding: 1em;
+}
+.mail-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.metadata {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  & p {
+    font-size: 12px;
+  }
+}
+.mail-card-actions {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  & a {
+    font-size: 12px;
+  }
+}
 </style>
