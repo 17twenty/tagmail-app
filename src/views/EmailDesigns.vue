@@ -9,6 +9,10 @@
         v-for="mail in designs"
         v-bind:key="mail.id"
         :mail="mail"
+        @get-code="handleGetCode(mail)"
+        @edit="handleEdit(mail)"
+        @duplicate="handleDuplicate(mail)"
+        @rename="handleRename(mail)"
       />
     </div>
   </div>
@@ -48,6 +52,20 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleGetCode(mail) {
+      console.log('get-code', mail);
+    },
+    handleEdit(mail) {
+      console.log('edit', mail);
+    },
+    handleDuplicate(mail) {
+      console.log('duplicate', mail);
+    },
+    handleRename(mail) {
+      console.log('rename', mail);
+    },
   },
 };
 </script>

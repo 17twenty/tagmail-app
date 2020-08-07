@@ -19,10 +19,10 @@
       </div>
     </div>
     <div class="mail-card-actions">
-      <a href="">Get Code</a>
-      <a href="">Edit Template</a>
-      <a href="">Duplicate Template</a>
-      <a href="">Rename Template</a>
+      <a @click="emitGetCode">Get Code</a>
+      <a @click="emitEdit">Edit Template</a>
+      <a @click="emitDuplicate">Duplicate Template</a>
+      <a @click="emitRename">Rename Template</a>
     </div>
   </div>
 </template>
@@ -34,6 +34,20 @@ export default {
     mail: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    emitGetCode() {
+      this.$emit('get-code');
+    },
+    emitEdit() {
+      this.$emit('edit');
+    },
+    emitDuplicate() {
+      this.$emit('duplicate');
+    },
+    emitRename() {
+      this.$emit('rename');
     },
   },
 };
