@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <div>
-      <img alt="Vue logo" width="120px" style="padding: 1em;" src="@/assets/logo.png">
+    <div class="card-shadow">
+      <img alt="tagmail logo" width="120px" style="" src="@/assets/logo.png">
       <Register />
     </div>
   </div>
