@@ -1,0 +1,48 @@
+<template>
+  <form>
+    <b-field label="Username / Email">
+      <b-input required type="email" v-model="form.email" :value="form.email"></b-input>
+    </b-field>
+    <b-field label="Password">
+      <b-input
+        required
+        type="password"
+        password-reveal
+        v-model="form.password"
+        :value="form.password"
+      ></b-input>
+    </b-field>
+    <div class="form-actions">
+      <b-input
+        :loading="isLoading"
+        expanded
+        type="submit"
+        custom-class="button is-primary"
+        value="Login"
+      />
+    </div>
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'FormLogin',
+  props: {
+    isLoading: {
+      type: Boolean,
+      required: false,
+      default: () => false,
+    },
+    form: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.form-actions {
+  margin-top: 2em;
+}
+</style>

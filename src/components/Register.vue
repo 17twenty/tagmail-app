@@ -65,5 +65,6 @@ export default {
 <style lang="scss">
 .register-container {
   width: 100%;
+  margin-bottom: 2em;
 }
 </style>
