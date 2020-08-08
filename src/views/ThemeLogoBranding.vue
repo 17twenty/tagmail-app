@@ -91,12 +91,21 @@
           </div>
         </div>
       </div>
-      <div clas="theme-preview">
+      <div
+        class="theme-preview"
+        :style="{ backgroundColor: backgroundColour }"
+      >
         <div>
           <img
             :src="brandLogo"
             alt="company logo"
             :style="{ width: `${logoSize}px`, borderRadius: `${borderRadius}` }">
+        </div>
+        <div>
+          <p class="title">Title Company</p>
+        </div>
+        <div>
+          <p>Main Text</p>
         </div>
       </div>
     </div>
@@ -141,6 +150,15 @@ export default {
     width: 50%;
   }
 }
+.theme-preview {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .row {
   align-items: center;
   display: flex;
