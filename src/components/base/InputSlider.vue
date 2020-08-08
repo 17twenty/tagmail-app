@@ -35,6 +35,7 @@ export default {
 
 /* The slider itself */
 .slider {
+  border-radius: 5px;
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   width: 100%; /* Full-width */
