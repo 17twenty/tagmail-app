@@ -14,7 +14,7 @@
       <p v-if="items.length < 1">
         Add an item to get started...
       </p>
-        <Palette @create="addItem"></Palette>
+      <Palette @create="addItem"></Palette>
       </div>
     </div>
 
@@ -42,6 +42,8 @@ import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
+import * as elements from '@/lib/elements';
+
 export default {
   components: { Element, Palette },
   data() {
@@ -61,7 +63,7 @@ export default {
       });
     },
     addItem(element) {
-      this.items.push(element);
+      this.items.push(elements[element]());
       this.updatePreview();
     },
     removeElement(index) {
