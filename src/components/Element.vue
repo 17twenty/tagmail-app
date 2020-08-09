@@ -3,19 +3,22 @@
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
-          <span style="font-size: 2em; color: #18A0FB;">
+          <span class="element-icon">
             <i :class="icon"></i>
           </span>
         </figure>
       </div>
       <div class="media-content">
         <div class="content">
-          <strong>{{elementType}}</strong>
-          <p v-if="isEditable">
-            <a href=""><small>Edit</small>&nbsp;
-            <i class="fa fa-caret-right" aria-hidden="true"></i>
+          <strong>{{ elementType }}</strong>
+          <div v-if="isEditable">
+            <a @click="handleCollapse" aria-controls="contentIdForA11y1">
+              <small>
+                Edit
+                <i :class="['fa', handleIcon]" aria-hidden="true"></i>
+              </small>
             </a>
-          </p>
+          </div>
         </div>
       </div>
       <div class="media-right">
@@ -25,11 +28,16 @@
         <button @click="emitDelete" class="button is-small is-outline is-rounded">
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
-        <button @click="emitDown"  class="button is-small is-outline is-rounded">
+        <button @click="emitDown" class="button is-small is-outline is-rounded">
           <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </button>
       </div>
     </article>
+    <b-collapse :open.sync="isOpen" aria-id="contentIdForA11y1">
+      <div class="">
+        <slot name="element-properties" />
+      </div>
+    </b-collapse>
   </div>
 </template>
 
@@ -44,7 +52,15 @@ export default {
       type: Array,
     },
   },
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
   computed: {
+    handleIcon() {
+      return this.isOpen ? 'fa-angle-down' : 'fa-angle-right';
+    },
     elementType() {
       switch (this.type) {
         case 'button':
@@ -107,17 +123,23 @@ export default {
     emitDelete() {
       this.$emit('delete');
     },
+    handleCollapse() {
+      this.isOpen = !this.isOpen;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
+@import '@/styles/variables.scss';
 
 .box {
-transition: background-color 0.5s ease !important;
-    padding: 12px;
-    margin-bottom: 12px  !important;
+  transition: background-color 0.5s ease !important;
+  padding: 12px;
+  margin-bottom: 12px !important;
+}
+.element-icon {
+  font-size: 2em;
+  color: $primary;
 }
 </style>

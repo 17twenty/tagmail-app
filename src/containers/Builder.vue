@@ -7,24 +7,30 @@
           v-for="(item, index) in items"
           :key="index"
           @delete="removeElement(index)"
-          @up="move(index,index-1)"
-          @down="move(index,index+1)"
+          @up="move(index, index - 1)"
+          @down="move(index, index + 1)"
           @update="elementUpdate(index)"
-        />
-      <p v-if="items.length < 1">
-        Add an item to get started...
-      </p>
+        >
+          <component
+            :is="elementFormMap(item.type)"
+            slot="element-properties"
+            :form="item.data"
+          />
+        </Element>
+        <p class="help-text" v-if="items.length < 1">
+          Add an item to get started...
+        </p>
         <Palette @create="addItem"></Palette>
       </div>
     </div>
 
     <div class="right">
       <button @click="createElement('list')" class="button is-outline is-rounded">
-          <i class="fas fa-desktop"></i>
-        </button>
-        <button class="button is-outline is-rounded">
-          <i class="fas fa-mobile-alt"></i>
-        </button>
+        <i class="fas fa-desktop"></i>
+      </button>
+      <button class="button is-outline is-rounded">
+        <i class="fas fa-mobile-alt"></i>
+      </button>
       <iframe
         src="http://localhost:9001/app/template"
         id="preview"
@@ -42,26 +48,55 @@ import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
+import FormElementButton from '@/components/FormElementButton.vue';
+import FormElementImage from '@/components/FormElementImage.vue';
+import FormElementText from '@/components/FormElementText.vue';
+import FormElementList from '@/components/FormElementList.vue';
+import FormElementTable from '@/components/FormElementTable.vue';
+
+import * as elements from '@/lib/elements';
+
 export default {
-  components: { Element, Palette },
+  name: 'BuilderContainer',
+  components: {
+    Element,
+    Palette,
+    FormElementButton,
+    FormElementImage,
+    FormElementText,
+    FormElementList,
+    FormElementTable,
+  },
   data() {
     return {
-      items: [
-      ],
+      items: [],
     };
   },
   methods: {
+    elementFormMap(elementType) {
+      const elementForm = {
+        button: 'FormElementButton',
+        image: 'FormElementImage',
+        text: 'FormElementText',
+        list: 'FormElementList',
+        table: 'FormElementTable',
+      };
+      return elementForm[elementType];
+    },
     updatePreview() {
       const payload = this.items;
-      api.postPreview(payload).then((res) => {
-        this.items = res.data;
-        this.reloadIframe();
-      }).catch(() => {
-      }).finally(() => {
-      });
+      api
+        .postPreview(payload)
+        .then((res) => {
+          this.items = res.data;
+          this.reloadIframe();
+        })
+        .catch(() => {})
+        .finally(() => {});
     },
-    addItem(element) {
-      this.items.push(element);
+    addItem(value) {
+      const element = value.toLowerCase();
+      this.items.push(elements[element]());
       this.updatePreview();
     },
     removeElement(index) {
@@ -90,14 +125,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .builder-container {
   height: 90vh;
   width: 97%;
   display: flex;
   left: 0;
   right: 0;
-  text-align: center;
 }
 /* Control the left side */
 .left {
@@ -105,10 +139,15 @@ export default {
   flex: 1;
   min-width: 30vw;
   max-width: 30vw;
+  & .help-text {
+    text-align: center;
+  }
+
 }
 
 /* Control the right side */
 .right {
+  text-align: center;
   overflow: hidden;
   max-width: 70vw;
   margin-left: 1em;
@@ -122,7 +161,7 @@ export default {
   position: relative;
   flex: 1;
 }
-#preview{
+#preview {
   height: 100%;
 }
 </style>
