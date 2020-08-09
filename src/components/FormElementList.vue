@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-field label="List Items">
-      <b-input type="textarea" :value="formattedRows" @input="handleInput" />
+      <b-input
+        type="textarea"
+        :value="formattedItems"
+        @input="handleInput" />
     </b-field>
   </div>
 </template>
@@ -16,20 +19,20 @@ export default {
     },
   },
   computed: {
-    formattedRows() {
-      let result;
-      this.form.rows.forEach((item) => {
+    formattedItems() {
+      let result = '';
+      this.form.items.forEach((item) => {
         result += `${item},`;
       });
       result = result.slice(0, -1);
       return result;
     },
   },
-  mehtods: {
-    handleInput(event) {
-      let list = event.target.value.replace(' ', '');
+  methods: {
+    handleInput(value) {
+      let list = value.replace(' ', '');
       list = list.split(',');
-      this.$emit('input', list);
+      this.$set(this.form, 'items', list);
     },
   },
 
