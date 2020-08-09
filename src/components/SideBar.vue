@@ -4,7 +4,7 @@
     <div class="sidebar-items">
       <router-link to="/dashboard/email-designs">Email Templates</router-link>
       <router-link to="/sending-preferences">Sending Preferences</router-link>
-      <router-link to="/dashboard/theme-logo-branding">Theme / Logo / Branding</router-link>
+      <router-link to="/dashboard/theme-logo-branding">Project Theme</router-link>
       <router-link to="/stats-and-metrics">Stats and Metrics</router-link>
     </div>
     <div class="sidebar-end">
