@@ -3,17 +3,18 @@
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
-          <span style="font-size: 2em; color: #18A0FB;">
+          <span class="element-icon">
             <i :class="icon"></i>
           </span>
         </figure>
       </div>
       <div class="media-content">
         <div class="content">
-          <strong>{{elementType}}</strong>
+          <strong>{{ elementType }}</strong>
           <p v-if="isEditable">
-            <a href=""><small>Edit</small>&nbsp;
-            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <a href=""
+              ><small>Edit</small>&nbsp;
+              <i class="fa fa-caret-right" aria-hidden="true"></i>
             </a>
           </p>
         </div>
@@ -25,7 +26,7 @@
         <button @click="emitDelete" class="button is-small is-outline is-rounded">
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
-        <button @click="emitDown"  class="button is-small is-outline is-rounded">
+        <button @click="emitDown" class="button is-small is-outline is-rounded">
           <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </button>
       </div>
@@ -112,12 +113,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
+@import '@/styles/variables.scss';
 
 .box {
-transition: background-color 0.5s ease !important;
-    padding: 12px;
-    margin-bottom: 12px  !important;
+  transition: background-color 0.5s ease !important;
+  padding: 12px;
+  margin-bottom: 12px !important;
+}
+.element-icon {
+  font-size: 2em;
+  color: $primary;
 }
 </style>
