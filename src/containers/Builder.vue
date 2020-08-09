@@ -52,6 +52,7 @@ import FormElementButton from '@/components/FormElementButton.vue';
 import FormElementImage from '@/components/FormElementImage.vue';
 import FormElementText from '@/components/FormElementText.vue';
 import FormElementList from '@/components/FormElementList.vue';
+import FormElementTable from '@/components/FormElementTable.vue';
 
 import * as elements from '@/lib/elements';
 
@@ -64,6 +65,7 @@ export default {
     FormElementImage,
     FormElementText,
     FormElementList,
+    FormElementTable,
   },
   data() {
     return {
@@ -77,6 +79,7 @@ export default {
         image: 'FormElementImage',
         text: 'FormElementText',
         list: 'FormElementList',
+        table: 'FormElementTable',
       };
       return elementForm[elementType];
     },
