@@ -4,10 +4,18 @@
       <b-input v-model="form.text" :value="form.text" />
     </b-field>
     <b-field label="Text Weight">
-      <b-input v-model="form.weight" :value="form.weight" />
+      <b-select expanded v-model.trim="form.weight" placeholder="weight...">
+        <option value="muted">Muted</option>
+        <option value="title">Title</option>
+        <option selected value="default">Default</option>
+      </b-select>
     </b-field>
     <b-field label="Text Position">
-      <b-input v-model="form.position" :value="form.position" />
+      <b-select expanded v-model.trim="form.position" placeholder="position...">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+        <option selected value="center">Center</option>
+      </b-select>
     </b-field>
   </div>
 </template>
@@ -21,10 +29,7 @@ export default {
       required: true,
     },
   },
-
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
