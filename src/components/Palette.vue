@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="palette-container">
     <button @click="createElement('button')" class="button is-outline is-rounded">
       <i class="fa fa-hand-pointer"></i>
     </button>
@@ -34,6 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma';
-@import '~buefy/src/scss/buefy';
+.palette-container {
+  text-align: center;
+}
 </style>

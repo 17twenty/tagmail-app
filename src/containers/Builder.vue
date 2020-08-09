@@ -17,7 +17,7 @@
             :form="item.data"
           />
         </Element>
-        <p v-if="items.length < 1">
+        <p class="help-text" v-if="items.length < 1">
           Add an item to get started...
         </p>
         <Palette @create="addItem"></Palette>
@@ -125,7 +125,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .builder-container {
   height: 90vh;
   width: 97%;
@@ -139,6 +139,10 @@ export default {
   flex: 1;
   min-width: 30vw;
   max-width: 30vw;
+  & .help-text {
+    text-align: center;
+  }
+
 }
 
 /* Control the right side */
