@@ -33,9 +33,9 @@ export function image() {
   return {
     type: 'image',
     data: {
-      ImageURI: 'https://via.placeholder.com/1200x400?text={ImageText}',
-      TargetURI: '',
-      AltText: 'Visiting one',
+      imageURI: 'https://via.placeholder.com/1200x400?text={ImageText}',
+      targetURI: '',
+      altText: 'Visiting one',
     },
   };
 }
