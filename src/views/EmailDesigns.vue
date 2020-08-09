@@ -1,8 +1,8 @@
 <template>
   <div class="email-design-container">
-    <div class="search-bar">
+    <!-- <div class="search-bar">
       <b-input></b-input>
-    </div>
+    </div> -->
     <div class="mail-card-container">
       <CardMail
         v-for="mail in designs"

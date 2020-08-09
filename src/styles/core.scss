@@ -1,8 +1,19 @@
 @charset "utf-8";
 @import '@/styles/variables.scss';
 
+@import url(https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,500;0,600;1,500;1,600&display=swap);
+
+
 $text: $dark;
 $title-color: $dark;
 $subtitle-color: $dark;
 $subtitle-strong-color: $dark;
 $body-background-color: $white;
+$family-sans-serif: 'Lato', sans-serif;
+$button-family: 'Poppins', sans-serif;
+$control-radius: 2px;
+$body-size: 14px;
+
+.button {
+    font-weight: bold;
+}

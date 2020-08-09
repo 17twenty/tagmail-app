@@ -67,9 +67,13 @@ export default {
 }
 .mail-card-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between left;
   align-items: center;
   margin-bottom: 1em;
+  & .subtitle {
+    padding-left: 1em;
+    font-weight: bold;
+  }
 }
 .metadata {
   display: flex;
