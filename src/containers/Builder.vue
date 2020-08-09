@@ -7,24 +7,30 @@
           v-for="(item, index) in items"
           :key="index"
           @delete="removeElement(index)"
-          @up="move(index,index-1)"
-          @down="move(index,index+1)"
+          @up="move(index, index - 1)"
+          @down="move(index, index + 1)"
           @update="elementUpdate(index)"
-        />
-      <p v-if="items.length < 1">
-        Add an item to get started...
-      </p>
-      <Palette @create="addItem"></Palette>
+        >
+          <component
+            :is="elementFormMap(item.type)"
+            slot="element-properties"
+            :form="item.data"
+          />
+        </Element>
+        <p v-if="items.length < 1">
+          Add an item to get started...
+        </p>
+        <Palette @create="addItem"></Palette>
       </div>
     </div>
 
     <div class="right">
       <button @click="createElement('list')" class="button is-outline is-rounded">
-          <i class="fas fa-desktop"></i>
-        </button>
-        <button class="button is-outline is-rounded">
-          <i class="fas fa-mobile-alt"></i>
-        </button>
+        <i class="fas fa-desktop"></i>
+      </button>
+      <button class="button is-outline is-rounded">
+        <i class="fas fa-mobile-alt"></i>
+      </button>
       <iframe
         src="http://localhost:9001/app/template"
         id="preview"
@@ -42,26 +48,42 @@ import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
+import FormElementButton from '@/components/FormElementButton.vue';
+import FormElementImage from '@/components/FormElementImage.vue';
+
 import * as elements from '@/lib/elements';
 
 export default {
   name: 'BuilderContainer',
-  components: { Element, Palette },
+  components: {
+    Element,
+    Palette,
+    FormElementButton,
+    FormElementImage,
+  },
   data() {
     return {
-      items: [
-      ],
+      items: [],
     };
   },
   methods: {
+    elementFormMap(elementType) {
+      const elementForm = {
+        button: 'FormElementButton',
+        image: 'FormElementImage',
+      };
+      return elementForm[elementType];
+    },
     updatePreview() {
       const payload = this.items;
-      api.postPreview(payload).then((res) => {
-        this.items = res.data;
-        this.reloadIframe();
-      }).catch(() => {
-      }).finally(() => {
-      });
+      api
+        .postPreview(payload)
+        .then((res) => {
+          this.items = res.data;
+          this.reloadIframe();
+        })
+        .catch(() => {})
+        .finally(() => {});
     },
     addItem(value) {
       const element = value.toLowerCase();
@@ -101,7 +123,6 @@ export default {
   display: flex;
   left: 0;
   right: 0;
-  text-align: center;
 }
 /* Control the left side */
 .left {
@@ -126,7 +147,7 @@ export default {
   position: relative;
   flex: 1;
 }
-#preview{
+#preview {
   height: 100%;
 }
 </style>
