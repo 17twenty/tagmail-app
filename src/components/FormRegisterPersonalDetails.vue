@@ -20,7 +20,7 @@
         :value="form.password"></b-input>
     </b-field>
     <div class="form-actions">
-      <b-input type="submit" value="Next..." custom-class="button is-primary"></b-input>
+      <b-input type="submit" value="Continue..." custom-class="button is-primary"></b-input>
     </div>
   </form>
 </template>

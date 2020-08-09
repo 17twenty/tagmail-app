@@ -66,5 +66,6 @@ export default {
 .register-container {
   width: 100%;
   margin-bottom: 2em;
+  padding: 12px;
 }
 </style>

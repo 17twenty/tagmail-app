@@ -48,6 +48,6 @@ export default {
 
 <style lang="scss" scoped>
 .form-actions {
-  margin-top: 2em;
+  padding-top: 2em;
 }
 </style>
