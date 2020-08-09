@@ -45,6 +45,7 @@ import Palette from '@/components/Palette.vue';
 import * as elements from '@/lib/elements';
 
 export default {
+  name: 'BuilderContainer',
   components: { Element, Palette },
   data() {
     return {

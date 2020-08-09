@@ -7,7 +7,7 @@
 
 <script>
 // @ is an alias to /src
-import Builder from '@/components/Builder.vue';
+import Builder from '@/containers/Builder.vue';
 
 export default {
   name: 'Editor',
