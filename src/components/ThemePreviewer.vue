@@ -7,10 +7,10 @@
   >
     <div>
       <img
-        :src="theme.brandLogo"
-        alt="company logo"
+        :src="theme.logoURI"
+        :alt="theme.logoAlt"
         :style="{
-          width: `${theme.logoSize}px`,
+          width: `${theme.logoWidth}px`,
           borderRadius: `${theme.borderRadius}`,
         }"
       />

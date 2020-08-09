@@ -9,11 +9,11 @@
           </div>
           <div class="cell small">
             <span class="card-shadow brand-value"
-              ><p>{{ logoSize }}</p></span
+              ><p>{{ logoWidth }}</p></span
             >
           </div>
           <div class="cell medium">
-            <InputSlider class="brand-range" v-model="logoSize" />
+            <InputSlider class="brand-range" v-model="logoWidth" />
           </div>
         </div>
         <div class="row">
@@ -116,9 +116,11 @@ export default {
   },
   data() {
     return {
-      brandLogo:
+      logoURI:
         'https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/f1/ca/f6/f1caf69e-e807-d256-a664-01fc6bb91036/source/256x256bb.jpg',
-      logoSize: '50',
+      logoWidth: '50',
+      logoAlt: 'BrandIcon',
+      logoPosition: 'center',
       borderRadius: '0',
       mutedText: '#7a7a7a',
       backgroundColour: '#fcfbfc',

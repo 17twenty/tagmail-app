@@ -1,13 +1,6 @@
 <template>
   <div class="slidecontainer">
-    <input
-      type="range"
-      min="0"
-      max="250"
-      :value="value"
-      @input="handleInput"
-      class="slider"
-    />
+    <input type="range" :min="min" :max="max" :value="value" @input="handleInput" class="slider" />
   </div>
 </template>
 
@@ -16,6 +9,16 @@ export default {
   name: 'InputSlider',
   props: {
     value: [String, Number],
+    min: {
+      type: String,
+      required: false,
+      default: () => '0',
+    },
+    max: {
+      type: String,
+      required: false,
+      default: () => '250',
+    },
   },
   methods: {
     handleInput(event) {
