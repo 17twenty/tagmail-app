@@ -2,8 +2,8 @@
   <div class="slidecontainer">
     <input
       type="range"
-      min="1"
-      max="100"
+      min="0"
+      max="250"
       :value="value"
       @input="handleInput"
       class="slider"
@@ -13,7 +13,6 @@
 
 <script>
 export default {
-  inheritAttrs: false,
   name: 'InputSlider',
   props: {
     value: [String, Number],

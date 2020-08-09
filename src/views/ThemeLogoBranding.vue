@@ -8,10 +8,12 @@
             <p class="brand-property">Logo Size</p>
           </div>
           <div class="cell small">
-            <span class="card-shadow brand-value"><p>{{logoSize}}</p></span>
+            <span class="card-shadow brand-value"
+              ><p>{{ logoSize }}</p></span
+            >
           </div>
           <div class="cell medium">
-            <InputSlider class="brand-range" v-model="logoSize"/>
+            <InputSlider class="brand-range" v-model="logoSize" />
           </div>
         </div>
         <div class="row">
@@ -19,10 +21,21 @@
             <p class="brand-property">Border Radius</p>
           </div>
           <div class="cell small">
-            <span class="card-shadow brand-value">{{borderRadius}}</span>
+            <span class="card-shadow brand-value">{{ borderRadius }}</span>
           </div>
           <div class="cell medium">
-            <InputSlider class="brand-range" v-model="borderRadius"/>
+            <InputSlider class="brand-range" v-model="borderRadius" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell medium">
+            <p class="brand-property">Muted Text</p>
+          </div>
+          <div class="cell small">
+            <InputColourPicker class="card-shadow brand-value" v-model="mutedText" />
+          </div>
+          <div class="cell medium">
+            <span></span>
           </div>
         </div>
         <div class="row">
@@ -30,9 +43,7 @@
             <p class="brand-property">Background Colour</p>
           </div>
           <div class="cell small">
-            <span
-            :style="{ backgroundColor: backgroundColour }"
-            class="card-shadow brand-value" ></span>
+            <InputColourPicker class="card-shadow brand-value" v-model="backgroundColour" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -43,9 +54,7 @@
             <p class="brand-property">Hightlight Colour</p>
           </div>
           <div class="cell small">
-            <span
-            :style="{ backgroundColor: highlightColour }"
-            class="card-shadow brand-value" ></span>
+            <InputColourPicker class="card-shadow brand-value" v-model="highlightColour" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -56,9 +65,7 @@
             <p class="brand-property">Default Text</p>
           </div>
           <div class="cell small">
-            <span
-            :style="{ backgroundColor: defaultText }"
-            class="card-shadow brand-value" ></span>
+            <InputColourPicker class="card-shadow brand-value" v-model="defaultText" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -69,9 +76,7 @@
             <p class="brand-property">Title Text</p>
           </div>
           <div class="cell small">
-            <span
-            :style="{ backgroundColor: titleText }"
-            class="card-shadow brand-value" ></span>
+            <InputColourPicker class="card-shadow brand-value" v-model="titleText" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -82,43 +87,29 @@
             <p class="brand-property">Border Colour</p>
           </div>
           <div class="cell small">
-            <span
-            :style="{ backgroundColor: borderColour }"
-            class="card-shadow brand-value" ></span>
+            <InputColourPicker class="card-shadow brand-value" v-model="borderColour" />
           </div>
           <div class="cell medium">
             <span></span>
           </div>
         </div>
       </div>
-      <div
-        class="theme-preview"
-        :style="{ backgroundColor: backgroundColour }"
-      >
-        <div>
-          <img
-            :src="brandLogo"
-            alt="company logo"
-            :style="{ width: `${logoSize}px`, borderRadius: `${borderRadius}` }">
-        </div>
-        <div>
-          <p class="title">Title Company</p>
-        </div>
-        <div>
-          <p>Main Text</p>
-        </div>
-      </div>
+      <ThemePreviewer :theme="$data" />
     </div>
   </div>
 </template>
 
 <script>
 import InputSlider from '@/components/base/InputSlider.vue';
+import InputColourPicker from '@/components/base/inputColourPicker.vue';
+import ThemePreviewer from '@/components/ThemePreviewer.vue';
 
 export default {
   name: 'ThemeLogoBranding',
   components: {
     InputSlider,
+    InputColourPicker,
+    ThemePreviewer,
   },
   data() {
     return {
@@ -126,12 +117,12 @@ export default {
         'https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/f1/ca/f6/f1caf69e-e807-d256-a664-01fc6bb91036/source/256x256bb.jpg',
       logoSize: '50',
       borderRadius: '0',
-      mutedText: 'grey',
-      backgroundColour: 'chocolate',
-      highlightColour: 'blue',
-      defaultText: 'green',
-      titleText: 'chocolate',
-      borderColour: 'pink',
+      mutedText: '#7a7a7a',
+      backgroundColour: '#f0f3ea',
+      highlightColour: '#38f36c',
+      defaultText: '#272746',
+      titleText: '#272746',
+      borderColour: '#272746',
     };
   },
 };
@@ -149,14 +140,6 @@ export default {
   & .theme-builder {
     width: 50%;
   }
-}
-.theme-preview {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .row {
