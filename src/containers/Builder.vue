@@ -50,6 +50,7 @@ import Palette from '@/components/Palette.vue';
 
 import FormElementButton from '@/components/FormElementButton.vue';
 import FormElementImage from '@/components/FormElementImage.vue';
+import FormElementText from '@/components/FormElementText.vue';
 
 import * as elements from '@/lib/elements';
 
@@ -60,6 +61,7 @@ export default {
     Palette,
     FormElementButton,
     FormElementImage,
+    FormElementText,
   },
   data() {
     return {
@@ -71,6 +73,7 @@ export default {
       const elementForm = {
         button: 'FormElementButton',
         image: 'FormElementImage',
+        text: 'FormElementText',
       };
       return elementForm[elementType];
     },
