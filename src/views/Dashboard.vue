@@ -4,7 +4,7 @@
       <Logo />
     </div>
     <div class="action-bar">
-      <b-button tag="router-link" to="/editor" type="is-primary">Create New Email</b-button>
+      <b-button tag="router-link" to="/editor" type="is-primary">Create Template</b-button>
     </div>
     <div class="page">
       <SideBar :business="business" />
