@@ -11,12 +11,25 @@
       <div class="media-content">
         <div class="content">
           <strong>{{ elementType }}</strong>
-          <p v-if="isEditable">
-            <a href=""
-              ><small>Edit</small>&nbsp;
-              <i class="fa fa-caret-right" aria-hidden="true"></i>
-            </a>
-          </p>
+          <div v-if="isEditable">
+            <b-collapse :open="false" aria-id="contentIdForA11y1">
+              <a slot="trigger" slot-scope="props" aria-controls="contentIdForA11y1">
+                <small>
+                  Edit
+                  <i :class="['fa', handleIcon(props)]" aria-hidden="true"></i>
+                </small>
+              </a>
+              <div class="card-content">
+                <p class="content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+                  Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec
+                  rutrum justo nibh eu lectus. <br />
+                  Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum
+                  mattis neque.
+                </p>
+              </div>
+            </b-collapse>
+          </div>
         </div>
       </div>
       <div class="media-right">
@@ -107,6 +120,9 @@ export default {
     },
     emitDelete() {
       this.$emit('delete');
+    },
+    handleIcon(props) {
+      return props.open ? 'fa-angle-down' : 'fa-angle-right';
     },
   },
 };
