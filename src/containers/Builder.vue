@@ -63,7 +63,8 @@ export default {
       }).finally(() => {
       });
     },
-    addItem(element) {
+    addItem(value) {
+      const element = value.toLowerCase();
       this.items.push(elements[element]());
       this.updatePreview();
     },
