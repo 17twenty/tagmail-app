@@ -12,23 +12,12 @@
         <div class="content">
           <strong>{{ elementType }}</strong>
           <div v-if="isEditable">
-            <b-collapse :open="false" aria-id="contentIdForA11y1">
-              <a slot="trigger" slot-scope="props" aria-controls="contentIdForA11y1">
-                <small>
-                  Edit
-                  <i :class="['fa', handleIcon(props)]" aria-hidden="true"></i>
-                </small>
-              </a>
-              <div class="card-content">
-                <p class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-                  Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec
-                  rutrum justo nibh eu lectus. <br />
-                  Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum
-                  mattis neque.
-                </p>
-              </div>
-            </b-collapse>
+            <a @click="handleCollapse" aria-controls="contentIdForA11y1">
+              <small>
+                Edit
+                <i :class="['fa', handleIcon]" aria-hidden="true"></i>
+              </small>
+            </a>
           </div>
         </div>
       </div>
@@ -44,6 +33,11 @@
         </button>
       </div>
     </article>
+    <b-collapse :open.sync="isOpen" aria-id="contentIdForA11y1">
+      <div class="">
+        <slot name="element-properties" />
+      </div>
+    </b-collapse>
   </div>
 </template>
 
@@ -58,7 +52,15 @@ export default {
       type: Array,
     },
   },
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
   computed: {
+    handleIcon() {
+      return this.isOpen ? 'fa-angle-down' : 'fa-angle-right';
+    },
     elementType() {
       switch (this.type) {
         case 'button':
@@ -121,8 +123,8 @@ export default {
     emitDelete() {
       this.$emit('delete');
     },
-    handleIcon(props) {
-      return props.open ? 'fa-angle-down' : 'fa-angle-right';
+    handleCollapse() {
+      this.isOpen = !this.isOpen;
     },
   },
 };
