@@ -147,6 +147,7 @@ export default {
 
 /* Control the right side */
 .right {
+  text-align: center;
   overflow: hidden;
   max-width: 70vw;
   margin-left: 1em;
