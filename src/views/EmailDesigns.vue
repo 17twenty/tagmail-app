@@ -1,7 +1,6 @@
 <template>
   <div class="email-design-container">
     <div class="search-bar">
-      <h1>Search bar</h1>
       <b-input></b-input>
     </div>
     <div class="mail-card-container">
