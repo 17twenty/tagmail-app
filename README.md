@@ -1,4 +1,4 @@
-# samile-app
+# tagmail-app
 
 ## Project setup
 ```
