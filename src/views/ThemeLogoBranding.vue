@@ -93,6 +93,9 @@
             <span></span>
           </div>
         </div>
+        <div class="button-actions">
+          <b-button type="is-primary">Save Changes</b-button>
+        </div>
       </div>
       <ThemePreviewer :theme="$data" />
     </div>
@@ -118,7 +121,7 @@ export default {
       logoSize: '50',
       borderRadius: '0',
       mutedText: '#7a7a7a',
-      backgroundColour: '#f0f3ea',
+      backgroundColour: '#fcfbfc',
       highlightColour: '#38f36c',
       defaultText: '#272746',
       titleText: '#272746',
@@ -140,6 +143,12 @@ export default {
   & .theme-builder {
     width: 50%;
   }
+}
+.button-actions {
+  display: flex;
+  margin-top: 2em;
+  justify-content: center;
+  width: 100%;
 }
 
 .row {
