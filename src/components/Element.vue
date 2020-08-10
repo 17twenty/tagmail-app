@@ -64,11 +64,11 @@ export default {
     elementType() {
       switch (this.type) {
         case 'button':
-          return 'Button / Link';
+          return 'Button';
         case 'image':
           return 'Image';
         case 'text':
-          return 'Text / Markdown';
+          return 'Text';
         case 'separator':
           return 'Separator';
         case 'list':
