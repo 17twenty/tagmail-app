@@ -22,13 +22,13 @@
         </div>
       </div>
       <div class="media-right">
-        <button @click="emitUp" class="button is-small is-outline is-rounded">
+        <button @click="emitUp" class="palette-btn">
           <i class="fa fa-arrow-up" aria-hidden="true"></i>
         </button>
-        <button @click="emitDelete" class="button is-small is-outline is-rounded">
+        <button @click="emitDelete" class="palette-btn">
           <i class="fa fa-times" aria-hidden="true"></i>
         </button>
-        <button @click="emitDown" class="button is-small is-outline is-rounded">
+        <button @click="emitDown" class="palette-btn">
           <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </button>
       </div>

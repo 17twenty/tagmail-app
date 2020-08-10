@@ -15,9 +15,26 @@ $control-radius: 2px;
 $body-size: 14px;
 
 .button {
-    font-weight: bold;
-    box-sizing: border-box;
-    min-width: 160px;
-    min-height: 40px;
-    padding: 18px 30px 21px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 18px 30px 21px;
+  min-width: 160px;
+  min-height: 40px;
+}
+
+.palette-btn {
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.85em;
+  min-height: 40px;
+  min-width: 40px;
+  border: 1px solid #e5e5e5;
+  background-color: $body-background-color;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    border: 1px solid #18A0FB;
+  }
 }

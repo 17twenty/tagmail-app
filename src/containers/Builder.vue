@@ -25,14 +25,14 @@
     </div>
 
     <div class="right">
-      <button @click="createElement('list')" class="button is-outline is-rounded">
+      <button @click="createElement('list')" class="palette-btn">
         <i class="fas fa-desktop"></i>
       </button>
-      <button class="button is-outline is-rounded">
+      <button class="palette-btn">
         <i class="fas fa-mobile-alt"></i>
       </button>
       <iframe
-        src="http://localhost:9001/app/template"
+        src="https://api.tagmail.io/app/template"
         id="preview"
         width="100%"
         height="100%"
