@@ -139,13 +139,19 @@ export default {
 .theme-logo-branding-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
   padding: 1em;
 }
 .theme-container {
   display: flex;
   justify-content: space-between;
+  height: 100%;
   & .theme-builder {
     width: 50%;
+  }
+  & .theme-preview-container {
+    width: 50%;
+    height: 100%;
   }
 }
 .button-actions {
@@ -180,9 +186,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.theme-preview-container {
-  width: 50%;
-  height: 100%;
 }
 </style>

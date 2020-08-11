@@ -18,7 +18,8 @@ export default {
 
 <style scoped>
 .title-text {
+  border-radius: 4px;
   width: 100%;
-  height: 1em;
+  height: 2em;
 }
 </style>
