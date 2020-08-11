@@ -1,5 +1,8 @@
 <template>
   <form @submit.prevent="emitSubmit">
+    <p><small>
+      Almost there, we just need a few more details to make sure you’re sending emails compliant with <a target="_new" href="https://en.wikipedia.org/wiki/Email_spam_legislation_by_country">international anti-spam laws</a>.
+    </small></p><br>
     <b-field label="Project / Business Name">
       <b-input required v-model="form.businessName" :value="form.businessName"></b-input>
     </b-field>

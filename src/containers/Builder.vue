@@ -32,7 +32,7 @@
         <i class="fas fa-mobile-alt"></i>
       </button>
       <iframe
-        src="https://api.tagmail.io/app/template"
+        src="http://localhost:9001/app/template"
         id="preview"
         width="100%"
         height="100%"
