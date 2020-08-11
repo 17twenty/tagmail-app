@@ -1,6 +1,6 @@
 <template>
   <div class="theme-logo-branding-container">
-    <h1 class="subtitle">Customise Your Brand</h1>
+    <h1 class="subtitle">Project Theme and Logo</h1>
     <div class="theme-container">
       <div class="theme-builder">
         <div class="row">
@@ -51,7 +51,7 @@
         </div>
         <div class="row">
           <div class="cell medium">
-            <p class="brand-property">Hightlight Colour</p>
+            <p class="brand-property">Highlight Colour</p>
           </div>
           <div class="cell small">
             <InputColourPicker class="card-shadow brand-value" v-model="highlightColour" />
