@@ -5,59 +5,34 @@
       backgroundColor: theme.backgroundColour,
     }"
   >
-    <div>
-      <img
-        :src="theme.logoURI"
-        :alt="theme.logoAlt"
+    <div class="theme-page">
+      <div class="theme-title-text">
+        <ThemeTitleText :colour="theme.titleText" />
+      </div>
+      <div
         :style="{
-          width: `${theme.logoWidth}px`,
-          borderRadius: `${theme.borderRadius}`,
+          backgroundColor: theme.defaultText,
         }"
-      />
-    </div>
-    <div>
-      <p
-        class="title"
-        :style="{
-          color: theme.titleText,
-        }"
+        class="theme-default-text"
       >
-        Title Company
-      </p>
-    </div>
-    <div>
-      <p
-        :style="{
-          color: theme.defaultText,
-        }"
-      >
-        Default text colour
-      </p>
-    </div>
-    <div>
-      <p
-        :style="{
-          color: theme.mutedText,
-        }"
-      >
-        Muted Text colour
-      </p>
-    </div>
-    <div
-      class="preview-border"
-      :style="{
-        borderColor: theme.borderColour,
-        borderRadius: `${theme.borderRadius}px`,
-      }"
-    >
-      <p>Border Radius</p>
+      </div>
+      <div class="theme-muted-text"></div>
+      <button class="theme-button"></button>
+      <div class="theme-separator"></div>
+      <div class="theme-muted-text"></div>
     </div>
   </div>
 </template>
 
 <script>
+import ThemeTitleText from '@/components/theme-elements/TitleText.vue';
+
 export default {
   name: 'ThemePreviewer',
+  components: {
+    ThemeTitleText,
+
+  },
   props: {
     theme: {
       type: Object,
@@ -68,24 +43,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
 .theme-preview {
   padding: 1em;
-  border-style: solid;
-  border-width: 1px;
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.preview-border {
+.theme-page {
+  background-color: $white;
+  padding: 1em;
+  width: 90%;
+  height: 90%;
   display: flex;
   justify-content: center;
-  margin: 2em;
-  padding: 2em;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
+  align-items: center;
+  flex-direction: column;
+}
+.theme-title-text {
+  width: 80%;
 }
 </style>

@@ -97,7 +97,9 @@
           <b-button type="is-primary">Save Changes</b-button>
         </div>
       </div>
-      <ThemePreviewer :theme="$data" />
+      <div class="theme-preview-container">
+        <ThemePreviewer :theme="$data" />
+      </div>
     </div>
   </div>
 </template>
@@ -122,12 +124,12 @@ export default {
       logoAlt: 'BrandIcon',
       logoPosition: 'center',
       borderRadius: '0',
-      mutedText: '#7a7a7a',
-      backgroundColour: '#fcfbfc',
-      highlightColour: '#38f36c',
+      mutedText: '#e5e5e5',
+      backgroundColour: '#c4c4c4',
+      highlightColour: '#14a0d3',
       defaultText: '#272746',
-      titleText: '#272746',
-      borderColour: '#272746',
+      titleText: '#222222',
+      borderColour: '#222222',
     };
   },
 };
@@ -178,5 +180,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.theme-preview-container {
+  width: 50%;
+  height: 100%;
 }
 </style>
