@@ -2,36 +2,41 @@
   <div
     class="theme-preview card-shadow"
     :style="{
-      backgroundColor: theme.backgroundColour,
+      backgroundColor: theme.bodyBackgroundColor,
     }"
   >
     <div class="theme-logo">
-      <img
-        :style="{ width: `${theme.logoWidth}px` }"
-        :src="theme.logoURI" alt="logo">
+      <img :style="{ width: `${theme.logoWidth}px` }" :src="theme.logoURI" alt="logo" />
     </div>
     <div
       :style="{
-        borderColor: theme.borderColour,
+        borderColor: theme.contentBorderColor,
+        backgroundColor: theme.contentBackgroundColor,
       }"
-      class="theme-page">
+      class="theme-page"
+    >
       <div class="theme-title-text">
-        <ThemeTitleText :colour="theme.titleText" />
+        <ThemeTitleText :colour="theme.titleTextColour" />
       </div>
       <div class="theme-default-text">
-        <ThemeTextBlock :colour="theme.defaultText" />
+        <ThemeTextBlock :colour="theme.defaultTextColour" />
       </div>
       <div class="theme-muted-text">
-        <ThemeTextFooter :colour="theme.mutedText" />
+        <ThemeTextFooter :colour="theme.mutedTextColour" />
       </div>
       <div class="theme-button">
-        <ThemeButton :colour="theme.highlightColour" />
+        <ThemeButton :colour="theme.highlightColour">
+          <span
+            :style="{ backgroundColor: theme.buttonTextColor }"
+            class="theme-button-text"
+          ></span>
+        </ThemeButton>
       </div>
       <div class="theme-separator">
-        <hr :style="{ backgroundColor: 'darkgray'}" >
+        <hr :style="{ backgroundColor: 'darkgray' }" />
       </div>
       <div class="theme-footer">
-        <ThemeTextFooter :colour="theme.mutedText" />
+        <ThemeTextFooter :colour="theme.mutedTextColour" />
       </div>
     </div>
   </div>
@@ -98,5 +103,9 @@ export default {
 .theme-button {
   margin: 2em auto;
 }
-
+.theme-button-text {
+  border-radius: 4px;
+  width: 4em;
+  height: 1em;
+}
 </style>

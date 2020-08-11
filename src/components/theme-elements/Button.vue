@@ -5,7 +5,7 @@
     }"
     class="themed-button"
   >
-    <span class="white-space"></span>
+    <slot />
   </div>
 </template>
 
@@ -28,12 +28,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.white-space {
-  border-radius: 4px;
-  width: 4em;
-  height: 1em;
-  color: $white;
-  background-color: $white;
 }
 </style>
