@@ -32,7 +32,7 @@
         <i class="fas fa-mobile-alt"></i>
       </button>
       <iframe
-        src="http://localhost:9001/app/template"
+        :src="tagmailApi"
         id="preview"
         width="100%"
         height="100%"
@@ -67,10 +67,19 @@ export default {
     FormElementList,
     FormElementTable,
   },
+  mounted() {
+    this.updatePreview();
+  },
   data() {
     return {
+      dirty: false,
       items: [],
     };
+  },
+  computed: {
+    tagmailApi() {
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template`;
+    },
   },
   methods: {
     elementFormMap(elementType) {
@@ -87,8 +96,7 @@ export default {
       const payload = this.items;
       api
         .postPreview(payload)
-        .then((res) => {
-          this.items = res.data;
+        .then(() => {
           this.reloadIframe();
         })
         .catch(() => {})
@@ -97,11 +105,9 @@ export default {
     addItem(value) {
       const element = value.toLowerCase();
       this.items.push(elements[element]());
-      this.updatePreview();
     },
     removeElement(index) {
       this.items.splice(index, 1);
-      this.updatePreview();
     },
     move(oldIndex, newIndex) {
       while (oldIndex < 0) {
@@ -113,13 +119,26 @@ export default {
         newIndex += this.items.length;
       }
       this.items.splice(newIndex, 0, this.items.splice(oldIndex, 1)[0]);
-      this.updatePreview();
       return this.items; // for testing purposes
     },
     reloadIframe() {
       const iframe = document.getElementById('preview');
       // eslint-disable-next-line no-self-assign
       iframe.src = iframe.src;
+    },
+  },
+  watch: {
+    items: {
+      deep: true,
+      async handler() {
+        this.dirty = true;
+      },
+    },
+    dirty() {
+      setTimeout(async () => {
+        this.dirty = false;
+        await this.updatePreview();
+      }, 500);
     },
   },
 };
