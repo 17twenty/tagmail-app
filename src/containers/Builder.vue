@@ -32,7 +32,7 @@
         <i class="fas fa-mobile-alt"></i>
       </button>
       <iframe
-        src="https://api.tagmail.io/app/template"
+        :src="tagmailApi"
         id="preview"
         width="100%"
         height="100%"
@@ -71,6 +71,11 @@ export default {
     return {
       items: [],
     };
+  },
+  computed: {
+    tagmailApi() {
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template`;
+    },
   },
   methods: {
     elementFormMap(elementType) {

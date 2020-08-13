@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://api.tagmail.io/app';
+const baseUrl = `${process.env.VUE_APP_TAGMAIL_API_URL}/app`;
 // const baseUrl = 'http://localhost:9001/app';
 
 function apiPost(url = '', data = {}, headers = {}) {
