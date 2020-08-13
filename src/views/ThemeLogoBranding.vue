@@ -27,6 +27,31 @@
         </div>
         <div class="row">
           <div class="cell medium">
+            <p class="brand-property">Web Font</p>
+          </div>
+          <div class="cell medium">
+            <b-field>
+              <b-select expanded v-model.trim="webFont" placeholder="font...">
+                <option selected value="Arial">Arial</option>
+                <option value="Caveat">Caveat</option>
+                <option value="Comfortaa">Comfortaa</option>
+                <option value="Commic Sans MS">Commic Sans MS</option>
+                <option value="Courier New">Courier New</option>
+                <option value="EB Garamond">EB Garamond</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Impact">Impact</option>
+                <option value="Lato">Lato</option>
+                <option value="Lobster">Lobster</option>
+                <option value="Lora">Lora</option>
+                <option value="Merriweather">Merriweather</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Nunito">Nunito</option>
+              </b-select>
+            </b-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="cell medium">
             <p class="brand-property">Logo Size</p>
           </div>
           <div class="cell small">
@@ -168,6 +193,7 @@ export default {
   data() {
     return {
       isModalVisible: false,
+      webFont: 'Arial',
       logoURI:
         'https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/f1/ca/f6/f1caf69e-e807-d256-a664-01fc6bb91036/source/256x256bb.jpg',
       logoPosition: 'center',
@@ -238,6 +264,9 @@ export default {
   align-items: center;
   & img {
     max-width: 50px;
+  }
+  & .field {
+    width: 100%;
   }
 }
 .cell.small {
