@@ -67,8 +67,12 @@ export default {
     FormElementList,
     FormElementTable,
   },
+  mounted() {
+    this.updatePreview();
+  },
   data() {
     return {
+      dirty: false,
       items: [],
     };
   },
@@ -92,8 +96,7 @@ export default {
       const payload = this.items;
       api
         .postPreview(payload)
-        .then((res) => {
-          this.items = res.data;
+        .then(() => {
           this.reloadIframe();
         })
         .catch(() => {})
@@ -102,11 +105,9 @@ export default {
     addItem(value) {
       const element = value.toLowerCase();
       this.items.push(elements[element]());
-      this.updatePreview();
     },
     removeElement(index) {
       this.items.splice(index, 1);
-      this.updatePreview();
     },
     move(oldIndex, newIndex) {
       while (oldIndex < 0) {
@@ -118,13 +119,26 @@ export default {
         newIndex += this.items.length;
       }
       this.items.splice(newIndex, 0, this.items.splice(oldIndex, 1)[0]);
-      this.updatePreview();
       return this.items; // for testing purposes
     },
     reloadIframe() {
       const iframe = document.getElementById('preview');
       // eslint-disable-next-line no-self-assign
       iframe.src = iframe.src;
+    },
+  },
+  watch: {
+    items: {
+      deep: true,
+      async handler() {
+        this.dirty = true;
+      },
+    },
+    dirty() {
+      setTimeout(async () => {
+        this.dirty = false;
+        await this.updatePreview();
+      }, 500);
     },
   },
 };
