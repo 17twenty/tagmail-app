@@ -31,24 +31,21 @@ export default {
       designs: [
         {
           id: '1',
-          templateName: 'Welcome Email',
+          templateName: 'ActivationEmail',
           version: '1.2.3',
-          sent: '2',
-          lastUpdated: new Date().toLocaleString(),
+          createdAt: new Date().toLocaleString(),
         },
         {
           id: '2',
           templateName: 'Welcome Email',
           version: '1.2.3',
-          sent: '2',
-          lastUpdated: new Date().toLocaleString(),
+          createdAt: new Date().toLocaleString(),
         },
         {
           id: '3',
-          templateName: 'Welcome Email',
+          templateName: 'PasswordReset',
           version: '1.2.3',
-          sent: '2',
-          lastUpdated: new Date().toLocaleString(),
+          createdAt: new Date().toLocaleString(),
         },
       ],
     };

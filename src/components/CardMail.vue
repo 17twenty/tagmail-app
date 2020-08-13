@@ -6,16 +6,12 @@
     </div>
     <div class="metadata">
       <div class="row">
-        <p>Sent:</p>
-        <p>{{mail.sent}} times</p>
-      </div>
-      <div class="row">
         <p>Version:</p>
         <p>{{mail.version}}</p>
       </div>
       <div class="row">
-        <p>Last Modified:</p>
-        <p>{{mail.lastUpdated}}</p>
+        <p>Created:</p>
+        <p>{{mail.createdAt}}</p>
       </div>
     </div>
     <div class="mail-card-actions">
