@@ -87,6 +87,7 @@ export default {
   width: 90%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
 }
 .theme-title-text {
   margin: 1em auto;

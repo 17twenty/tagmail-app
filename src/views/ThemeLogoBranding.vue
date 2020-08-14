@@ -242,6 +242,9 @@ export default {
   & .theme-preview-container {
     width: 50%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .button-actions {

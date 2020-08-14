@@ -41,7 +41,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   width: 100vw;
 }
 .dashboard-header {
@@ -63,8 +62,8 @@ export default {
 .main-view {
   padding: 12px;
   width: 100%;
-  height: 95%;
-  overflow-y: auto;
+  height: 100%;
+  margin-bottom: 3em;
   overflow-x: hidden;
   & * {
     padding: 12px 12px;
