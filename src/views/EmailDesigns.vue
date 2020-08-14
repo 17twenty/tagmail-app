@@ -78,7 +78,6 @@ export default {
 }
 
 .search-bar{
-  height: 100%;
   margin: 1em;
   display: flex;
   align-items: center;
