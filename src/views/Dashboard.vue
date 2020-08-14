@@ -57,13 +57,14 @@ export default {
 .page {
   display: flex;
   width: 90%;
+  height: 100%;
 }
 .main-view {
   padding: 12px;
   width: 100%;
   height: 100%;
-  margin-bottom: 3em;
-  flex-grow: 1;
+  min-height: 75vh;
+  margin-bottom: 2em;
   overflow-x: hidden;
   overflow-x: auto;
   & * {

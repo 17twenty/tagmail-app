@@ -78,6 +78,7 @@ export default {
 }
 
 .search-bar{
+  height: 100%;
   margin: 1em;
   display: flex;
   align-items: center;
@@ -87,6 +88,7 @@ export default {
   }
 }
 .mail-card-container {
+  height: 100%;
   display: flex;
   flex-flow: row wrap;
   & .mail-card {
