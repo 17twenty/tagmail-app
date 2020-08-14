@@ -87,6 +87,7 @@ export default {
   }
 }
 .mail-card-container {
+  height: 100%;
   display: flex;
   flex-flow: row wrap;
   & .mail-card {

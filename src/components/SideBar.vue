@@ -30,13 +30,14 @@ export default {
 
 .sidebar {
   width: 30%;
+  height: 75vh;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90%;
 }
 .sidebar-items {
+  width: 50%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
