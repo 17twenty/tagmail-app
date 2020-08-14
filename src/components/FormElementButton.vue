@@ -7,7 +7,11 @@
       <b-input v-model="form.uri" :value="form.uri" />
     </b-field>
     <b-field label="Position">
-      <b-input v-model="form.position" :value="form.position" />
+      <b-select expanded v-model.trim="form.position" placeholder="position...">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+        <option selected value="center">Center</option>
+      </b-select>
     </b-field>
   </div>
 </template>
