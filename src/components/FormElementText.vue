@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-field label="Text">
-      <b-input v-model="form.text" :value="form.text" />
+      <b-input type="textarea" v-model="form.text" :value="form.text" />
     </b-field>
     <b-field label="Text Weight">
       <b-select expanded v-model.trim="form.weight" placeholder="weight...">

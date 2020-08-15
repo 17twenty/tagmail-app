@@ -31,8 +31,15 @@
       <button class="palette-btn">
         <i class="fas fa-mobile-alt"></i>
       </button>
+      <form id="reloader" target="preview" method="POST" :action="tagmailApi">
+        <input type="hidden"
+        name="payload"
+        :value="stringIt(items)"
+          />
+      </form>
       <iframe
         :src="tagmailApi"
+        name="preview"
         id="preview"
         width="100%"
         height="100%"
@@ -68,7 +75,14 @@ export default {
     FormElementTable,
   },
   mounted() {
-    this.updatePreview();
+    api
+      .loadTemplate()
+      .then((res) => {
+        this.items = res.data;
+        this.updatePreview();
+      })
+      .catch(() => {})
+      .finally(() => {});
   },
   data() {
     return {
@@ -78,10 +92,13 @@ export default {
   },
   computed: {
     tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template`;
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
     },
   },
   methods: {
+    stringIt(element) {
+      return JSON.stringify(element);
+    },
     elementFormMap(elementType) {
       const elementForm = {
         button: 'FormElementButton',
@@ -93,14 +110,8 @@ export default {
       return elementForm[elementType];
     },
     updatePreview() {
-      const payload = this.items;
-      api
-        .postPreview(payload)
-        .then(() => {
-          this.reloadIframe();
-        })
-        .catch(() => {})
-        .finally(() => {});
+      document.getElementById('reloader').submit();
+      this.dirty = false;
     },
     addItem(value) {
       const element = value.toLowerCase();
@@ -121,11 +132,6 @@ export default {
       this.items.splice(newIndex, 0, this.items.splice(oldIndex, 1)[0]);
       return this.items; // for testing purposes
     },
-    reloadIframe() {
-      const iframe = document.getElementById('preview');
-      // eslint-disable-next-line no-self-assign
-      iframe.src = iframe.src;
-    },
   },
   watch: {
     items: {
@@ -135,6 +141,9 @@ export default {
       },
     },
     dirty() {
+      if (!this.dirty) {
+        return;
+      }
       setTimeout(async () => {
         this.dirty = false;
         await this.updatePreview();

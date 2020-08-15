@@ -44,7 +44,7 @@ export function text() {
   return {
     type: 'text',
     data: {
-      text: 'Greeting {PersonName}',
+      text: '_You_ can use **Markdown** and tags here {PersonName}',
       weight: 'defaultText',
       position: 'left',
     },
