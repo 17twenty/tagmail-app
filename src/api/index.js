@@ -12,12 +12,27 @@ function apiPost(url = '', data = {}, headers = {}) {
   });
 }
 
+function apiGet(url = '', headers = {}) {
+  return axios.get(url, {
+    headers: {
+      ...headers,
+    },
+    withCredentials: true,
+  });
+}
+
 function postPreview(params = {}) {
   const url = `${baseUrl}/create`;
   return apiPost(url, params);
 }
 
+function loadTemplate() {
+  const url = `${baseUrl}/load-template`;
+  return apiGet(url);
+}
+
 export default {
   apiPost,
   postPreview,
+  loadTemplate,
 };

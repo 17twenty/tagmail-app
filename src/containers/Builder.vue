@@ -32,11 +32,9 @@
         <i class="fas fa-mobile-alt"></i>
       </button>
       <form id="reloader" target="preview" method="POST" :action="tagmailApi">
-        <input v-for="(item, index) in items"
-          :key="index"
-          type="hidden"
-          :name="item.type"
-          :value="stringIt(item.data)"
+        <input type="hidden"
+        name="payload"
+        :value="stringIt(items)"
           />
       </form>
       <iframe
@@ -53,7 +51,7 @@
 </template>
 
 <script>
-// import api from '@/api';
+import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
@@ -77,7 +75,15 @@ export default {
     FormElementTable,
   },
   mounted() {
-    this.updatePreview();
+    api
+      .loadTemplate()
+      .then((res) => {
+        this.items = res.data;
+        console.log(res.data);
+        this.updatePreview();
+      })
+      .catch(() => {})
+      .finally(() => {});
   },
   data() {
     return {
@@ -106,6 +112,7 @@ export default {
     },
     updatePreview() {
       document.getElementById('reloader').submit();
+      this.dirty = false;
     },
     addItem(value) {
       const element = value.toLowerCase();
@@ -135,6 +142,9 @@ export default {
       },
     },
     dirty() {
+      if (!this.dirty) {
+        return;
+      }
       setTimeout(async () => {
         this.dirty = false;
         await this.updatePreview();
