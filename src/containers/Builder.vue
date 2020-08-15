@@ -31,8 +31,17 @@
       <button class="palette-btn">
         <i class="fas fa-mobile-alt"></i>
       </button>
+      <form id="reloader" target="preview" method="POST" :action="tagmailApi">
+        <input v-for="(item, index) in items"
+          :key="index"
+          type="hidden"
+          :name="item.type"
+          :value="stringIt(item.data)"
+          />
+      </form>
       <iframe
         :src="tagmailApi"
+        name="preview"
         id="preview"
         width="100%"
         height="100%"
@@ -44,7 +53,7 @@
 </template>
 
 <script>
-import api from '@/api';
+// import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
@@ -78,10 +87,13 @@ export default {
   },
   computed: {
     tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template`;
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
     },
   },
   methods: {
+    stringIt(element) {
+      return JSON.stringify(element);
+    },
     elementFormMap(elementType) {
       const elementForm = {
         button: 'FormElementButton',
@@ -93,14 +105,7 @@ export default {
       return elementForm[elementType];
     },
     updatePreview() {
-      const payload = this.items;
-      api
-        .postPreview(payload)
-        .then(() => {
-          this.reloadIframe();
-        })
-        .catch(() => {})
-        .finally(() => {});
+      document.getElementById('reloader').submit();
     },
     addItem(value) {
       const element = value.toLowerCase();
@@ -120,11 +125,6 @@ export default {
       }
       this.items.splice(newIndex, 0, this.items.splice(oldIndex, 1)[0]);
       return this.items; // for testing purposes
-    },
-    reloadIframe() {
-      const iframe = document.getElementById('preview');
-      // eslint-disable-next-line no-self-assign
-      iframe.src = iframe.src;
     },
   },
   watch: {
