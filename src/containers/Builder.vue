@@ -34,7 +34,7 @@
       <form id="reloader" target="preview" method="POST" :action="tagmailApi">
         <input type="hidden"
         name="payload"
-        :value="stringIt(items)"
+        :value="elementsToString"
           />
       </form>
       <iframe
@@ -74,7 +74,7 @@ export default {
     FormElementTable,
   },
   mounted() {
-    document.getElementById('reloader').reset();
+    document.getElementById('reloader').submit();
   },
   data() {
     return {
@@ -86,11 +86,11 @@ export default {
     tagmailApi() {
       return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
     },
+    elementsToString() {
+      return JSON.stringify(this.items);
+    },
   },
   methods: {
-    stringIt(element) {
-      return JSON.stringify(element);
-    },
     elementFormMap(elementType) {
       const elementForm = {
         button: 'FormElementButton',
