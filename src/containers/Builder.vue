@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import api from '@/api';
 import Element from '@/components/Element.vue';
 import Palette from '@/components/Palette.vue';
 
@@ -75,14 +74,7 @@ export default {
     FormElementTable,
   },
   mounted() {
-    api
-      .loadTemplate()
-      .then((res) => {
-        this.items = res.data;
-        this.updatePreview();
-      })
-      .catch(() => {})
-      .finally(() => {});
+    document.getElementById('reloader').reset();
   },
   data() {
     return {
