@@ -230,7 +230,24 @@ export default {
       this.closeModal();
     },
     async postSaveTheme() {
-      await api.postProjectTheme(this.$data);
+      try {
+        await api.postProjectTheme(this.$data);
+        this.handleSuccessNotification();
+      } catch (error) {
+        this.handleErrorNotification();
+      }
+    },
+    handleSuccessNotification() {
+      this.$buefy.snackbar.open({
+        message: 'Theme successfully saved',
+        type: 'is-success',
+      });
+    },
+    handleErrorNotification() {
+      this.$buefy.snackbar.open({
+        message: 'There was an issue saving theme',
+        type: 'is-danger',
+      });
     },
   },
 };
