@@ -58,7 +58,6 @@ export default {
   postTemplate,
   getLogout,
   postPreview,
-  loadTemplate,
   postPersonalDetailsRego,
   getProject,
   getProjectTheme,
