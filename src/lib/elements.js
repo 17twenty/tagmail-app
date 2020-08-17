@@ -3,7 +3,7 @@ export function button() {
     type: 'button',
     data: {
       text: 'Button',
-      uri: '',
+      uri: 'https://www.tagmail.io',
       position: 'center',
     },
   };
@@ -16,8 +16,8 @@ export function table() {
       rows: [
         { key: 'Title', value: 'Description' },
       ],
-      leftheader: '',
-      rightheader: '',
+      leftheader: 'Left',
+      rightheader: 'Right',
     },
   };
 }
@@ -33,9 +33,9 @@ export function image() {
   return {
     type: 'image',
     data: {
-      imageURI: 'https://via.placeholder.com/1200x400?text={ImageText}',
+      imageURI: 'https://picsum.photos/seed/dog/600',
       targetURI: '',
-      altText: 'Visiting one',
+      altText: 'Sitting Person',
     },
   };
 }
