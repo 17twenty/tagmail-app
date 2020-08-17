@@ -46,6 +46,7 @@
                 <option value="Merriweather">Merriweather</option>
                 <option value="Montserrat">Montserrat</option>
                 <option value="Nunito">Nunito</option>
+                <option value="Open Sans">Open Sans</option>
               </b-select>
             </b-field>
           </div>
@@ -190,24 +191,29 @@ export default {
     ThemePreviewer,
     LogoUploader,
   },
+  props: {
+    theme: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       isModalVisible: false,
-      webFont: 'Arial',
-      logoURI:
-        'https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/f1/ca/f6/f1caf69e-e807-d256-a664-01fc6bb91036/source/256x256bb.jpg',
-      logoPosition: 'center',
-      logoWidth: '50',
-      borderRadius: '0',
-      bodyBackgroundColor: '#c4c4c4',
-      highlightColour: '#14a0d3',
-      contentBackgroundColor: '#fcfcfc',
-      contentBorderColor: '#222222',
-      buttonTextColor: '#fcfcfc',
-      defaultTextColour: '#afb3b7',
-      mutedTextColour: '#e5e5e5',
-      titleTextColour: '#222222',
-      projectName: '',
+      webFont: this.theme.webFont,
+      logoURI: this.theme.logoURI,
+      logoPosition: this.theme.logoPosition,
+      logoWidth: this.theme.logoWidth,
+      borderRadius: this.theme.borderRadius,
+      bodyBackgroundColor: this.theme.bodyBackgroundColor,
+      highlightColour: this.theme.highlightColour,
+      contentBackgroundColor: this.theme.contentBackgroundColor,
+      contentBorderColor: this.theme.contentBorderColor,
+      buttonTextColor: this.theme.buttonTextColor,
+      defaultTextColour: this.theme.defaultTextColour,
+      mutedTextColour: this.theme.mutedTextColour,
+      titleTextColour: this.theme.titleTextColour,
+      projectName: this.theme.projectName,
     };
   },
   methods: {

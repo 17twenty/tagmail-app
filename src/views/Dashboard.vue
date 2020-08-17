@@ -7,7 +7,7 @@
       <b-button tag="router-link" to="/editor" type="is-primary">Create Template</b-button>
     </div>
     <div class="page">
-      <SideBar :project_name="project.project_name" />
+      <SideBar :projectName="project.projectName" />
       <main class="main-view card-shadow">
         <transition name="slide-fade" mode="out-in">
           <router-view></router-view>
