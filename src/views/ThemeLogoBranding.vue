@@ -8,7 +8,7 @@
             <p class="brand-property">Your Brand Logo</p>
           </div>
           <div class="cell medium tall">
-            <a @click="showModal"><img :src="logoURI" alt=""/></a>
+            <a @click="showModal"><img :src="logoUri" alt=""/></a>
           </div>
         </div>
         <div class="row">
@@ -46,6 +46,7 @@
                 <option value="Merriweather">Merriweather</option>
                 <option value="Montserrat">Montserrat</option>
                 <option value="Nunito">Nunito</option>
+                <option value="Open Sans">Open Sans</option>
               </b-select>
             </b-field>
           </div>
@@ -90,7 +91,7 @@
             <p class="brand-property">Highlight Colour</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="highlightColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="highlightColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -134,7 +135,7 @@
             <p class="brand-property">Default Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="defaultTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="defaultTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -145,7 +146,7 @@
             <p class="brand-property">Muted Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="mutedTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="mutedTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -156,14 +157,14 @@
             <p class="brand-property">Title Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="titleTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="titleTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
           </div>
         </div>
         <div class="button-actions">
-          <b-button type="is-primary">Save Changes</b-button>
+          <b-button @click="postSaveTheme" type="is-primary">Save Changes</b-button>
         </div>
       </div>
       <div class="theme-preview-container">
@@ -182,6 +183,8 @@ import InputColourPicker from '@/components/base/inputColourPicker.vue';
 import ThemePreviewer from '@/components/ThemePreviewer.vue';
 import LogoUploader from '@/components/LogoUploader.vue';
 
+import api from '@/api';
+
 export default {
   name: 'ThemeLogoBranding',
   components: {
@@ -190,24 +193,29 @@ export default {
     ThemePreviewer,
     LogoUploader,
   },
+  props: {
+    theme: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       isModalVisible: false,
-      webFont: 'Arial',
-      logoURI:
-        'https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/f1/ca/f6/f1caf69e-e807-d256-a664-01fc6bb91036/source/256x256bb.jpg',
-      logoPosition: 'center',
-      logoWidth: '50',
-      borderRadius: '0',
-      bodyBackgroundColor: '#c4c4c4',
-      highlightColour: '#14a0d3',
-      contentBackgroundColor: '#fcfcfc',
-      contentBorderColor: '#222222',
-      buttonTextColor: '#fcfcfc',
-      defaultTextColour: '#afb3b7',
-      mutedTextColour: '#e5e5e5',
-      titleTextColour: '#222222',
-      projectName: '',
+      webFont: this.theme.webFont,
+      logoUri: this.theme.logoUri,
+      logoPosition: this.theme.logoPosition,
+      logoWidth: this.theme.logoWidth,
+      borderRadius: this.theme.borderRadius,
+      bodyBackgroundColor: this.theme.bodyBackgroundColor,
+      highlightColor: this.theme.highlightColor,
+      contentBackgroundColor: this.theme.contentBackgroundColor,
+      contentBorderColor: this.theme.contentBorderColor,
+      buttonTextColor: this.theme.buttonTextColor,
+      defaultTextColor: this.theme.defaultTextColor,
+      mutedTextColor: this.theme.mutedTextColor,
+      titleTextColor: this.theme.titleTextColor,
+      projectId: this.theme.projectId,
     };
   },
   methods: {
@@ -218,8 +226,28 @@ export default {
       this.isModalVisible = true;
     },
     blobStuff(blob) {
-      this.logoURI = blob;
+      this.logoUri = blob;
       this.closeModal();
+    },
+    async postSaveTheme() {
+      try {
+        await api.postProjectTheme(this.$data);
+        this.handleSuccessNotification();
+      } catch (error) {
+        this.handleErrorNotification();
+      }
+    },
+    handleSuccessNotification() {
+      this.$buefy.snackbar.open({
+        message: 'Theme successfully saved',
+        type: 'is-success',
+      });
+    },
+    handleErrorNotification() {
+      this.$buefy.snackbar.open({
+        message: 'There was an issue saving theme',
+        type: 'is-danger',
+      });
     },
   },
 };

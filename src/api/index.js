@@ -1,24 +1,6 @@
-import axios from 'axios';
+import { apiGet, apiPost } from './helpers';
 
 const baseUrl = `${process.env.VUE_APP_TAGMAIL_API_URL}/app`;
-
-function apiPost(url = '', data = {}, headers = {}) {
-  return axios.post(url, data, {
-    headers: {
-      ...headers,
-    },
-    withCredentials: true,
-  });
-}
-
-function apiGet(url = '', headers = {}) {
-  return axios.get(url, {
-    headers: {
-      ...headers,
-    },
-    withCredentials: true,
-  });
-}
 
 function postLogin(params = {}) {
   const url = `${baseUrl}/login`;
@@ -53,12 +35,32 @@ function getLogout() {
   return apiGet(url);
 }
 
+function postPersonalDetailsRego(form = {}) {
+  const url = `${baseUrl}/register`;
+  return apiPost(url, form);
+}
+
+function getProject() {
+  const url = `${baseUrl}/project`;
+  return apiGet(url);
+}
+function getProjectTheme() {
+  const url = `${baseUrl}/project/theme`;
+  return apiGet(url);
+}
+function postProjectTheme(payload = {}) {
+  const url = `${baseUrl}/project/theme`;
+  return apiPost(url, payload);
+}
+
 export default {
-  apiPost,
-  apiGet,
   postLogin,
   postTemplate,
   getLogout,
   postPreview,
+  postPersonalDetailsRego,
+  getProject,
+  getProjectTheme,
+  postProjectTheme,
   getTemplate,
 };

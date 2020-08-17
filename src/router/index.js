@@ -5,6 +5,8 @@ import Editor from '../views/Editor.vue';
 import Dashboard from '../views/Dashboard.vue';
 import * as routeNames from './route-names';
 
+import api from '../api';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,32 +31,47 @@ const routes = [
     name: routeNames.DASHBOARD,
     component: Dashboard,
     props: true,
-    beforeEnter(to, from, next) {
-      to.params.business = {
-        businessName: 'QuickaPay',
-      };
-      next();
+    async beforeEnter(to, from, next) {
+      try {
+        const { data } = await api.getProject();
+        to.params.project = data;
+        next();
+      } catch (error) {
+        next({ name: routeNames.LOGIN });
+      }
     },
     children: [
       {
         path: 'email-designs',
         name: routeNames.EMAIL_DESIGNS,
-        beforeEnter(to, from, next) {
-          to.params.business = {
-            businessName: 'QuickaPay',
-          };
-          next();
+        async beforeEnter(to, from, next) {
+          try {
+            const { data } = await api.getProject();
+            to.params.project = data;
+            next();
+          } catch (error) {
+            next({ name: routeNames.LOGIN });
+          }
         },
         component: () => import(/* webpackChunkName: "email-designs" */ '../views/EmailDesigns.vue'),
       },
       {
         path: 'theme-logo-branding',
         name: routeNames.THEME_LOGO_BRANDING,
-        beforeEnter(to, from, next) {
-          to.params.business = {
-            businessName: 'QuickaPay',
-          };
-          next();
+        props: true,
+        async beforeEnter(to, from, next) {
+          try {
+            const resp = await Promise.allSettled([
+              api.getProjectTheme(),
+              api.getProject(),
+            ]);
+            const [theme, project] = resp;
+            to.params.theme = theme.value.data;
+            to.params.project = project.value.data;
+            next();
+          } catch (error) {
+            next({ name: routeNames.LOGIN });
+          }
         },
         component: () => import(/* webpackChunkName: "theme-logo-branding" */ '../views/ThemeLogoBranding.vue'),
       },

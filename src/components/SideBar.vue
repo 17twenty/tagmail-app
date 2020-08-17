@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <p class="subtitle">{{business.businessName}}</p>
+    <p class="subtitle">{{projectName}}</p>
     <div class="sidebar-items">
       <router-link to="/dashboard/email-designs">Email Templates</router-link>
       <router-link to="/sending-preferences">Sending Preferences</router-link>
@@ -17,8 +17,8 @@
 export default {
   name: 'Sidebar',
   props: {
-    business: {
-      type: Object,
+    projectName: {
+      type: String,
       required: true,
     },
   },
