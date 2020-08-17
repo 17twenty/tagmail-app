@@ -25,6 +25,15 @@ function postLogin(params = {}) {
   return apiPost(url, params);
 }
 
+function getTemplate(templateID = null) {
+  if (templateID) {
+    const url = `${baseUrl}/template/${templateID}`;
+    return apiGet(url);
+  }
+  const url = `${baseUrl}/template`;
+  return apiGet(url);
+}
+
 function postTemplate(templateID = null, params = {}) {
   if (templateID) {
     const url = `${baseUrl}/template/${templateID}`;
@@ -44,11 +53,6 @@ function getLogout() {
   return apiGet(url);
 }
 
-function loadTemplate() {
-  const url = `${baseUrl}/load-template`;
-  return apiGet(url);
-}
-
 export default {
   apiPost,
   apiGet,
@@ -56,5 +60,5 @@ export default {
   postTemplate,
   getLogout,
   postPreview,
-  loadTemplate,
+  getTemplate,
 };

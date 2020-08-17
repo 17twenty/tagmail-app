@@ -72,12 +72,15 @@ export default {
   },
   mounted() {
     api
-      .loadTemplate()
+      .getTemplate(this.templateID)
       .then((res) => {
-        this.items = res.data;
+        console.log(res);
+        this.items = res.data.data;
         this.updatePreview();
       })
-      .catch(() => {})
+      .catch((error) => {
+        console.log(error);
+      })
       .finally(() => {});
   },
   data() {
@@ -106,7 +109,7 @@ export default {
   },
   computed: {
     tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template/preview`;
     },
   },
   methods: {
