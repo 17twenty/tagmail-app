@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <img alt="Vue logo" width="120px" style="padding: 1em;" src="@/assets/logo.png">
-    <Builder/>
+    <Builder :theme="theme" :project="project" />
   </div>
 </template>
 
@@ -13,6 +13,16 @@ export default {
   name: 'Editor',
   components: {
     Builder,
+  },
+  props: {
+    theme: {
+      type: Object,
+      required: true,
+    },
+    project: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>

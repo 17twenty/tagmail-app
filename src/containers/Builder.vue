@@ -70,6 +70,16 @@ export default {
     FormElementList,
     FormElementTable,
   },
+  props: {
+    project: {
+      type: Object,
+      required: true,
+    },
+    theme: {
+      type: Object,
+      required: true,
+    },
+  },
   mounted() {
     api
       .getTemplate(this.templateID)
@@ -90,20 +100,20 @@ export default {
       templateID: null,
       items: [],
       themeConfig: {
-        WebFont: 'Lato',
-        LogoURI: 'https://ucarecdn.com/feabb7ae-302b-4975-988e-eac0d6e3ac3f/',
-        LogoPosition: 'center',
-        LogoWidth: 120,
-        BorderRadius: 4,
-        BodyBackgroundColor: 'fcfcfc',
-        HighlightColor: '18a0fb',
-        ContentBackgroundColor: 'ffffff',
-        ContentBorderColor: 'E5E5E5',
-        ButtonTextColor: 'ffffff',
-        DefaultTextColor: '575757',
-        MutedTextColor: 'b3b3b3',
-        TitleTextColor: '222222',
-        ProjectName: 'Tagmail',
+        WebFont: this.theme.webFont,
+        LogoURI: this.theme.LogoUri,
+        LogoPosition: this.theme.logoPosition,
+        LogoWidth: this.theme.logoWidth,
+        BorderRadius: this.theme.borderRadius,
+        BodyBackgroundColor: this.theme.bodyBackgroundColor,
+        HighlightColor: this.theme.highlightColor,
+        ContentBackgroundColor: this.theme.contentBackgroundColor,
+        ContentBorderColor: this.theme.contentBorderColor,
+        ButtonTextColor: this.theme.buttonTextColor,
+        DefaultTextColor: this.theme.defaultTextColor,
+        MutedTextColor: this.theme.mutedTextColor,
+        TitleTextColor: this.theme.titleTextColor,
+        ProjectName: this.project.projectName,
       },
     };
   },
