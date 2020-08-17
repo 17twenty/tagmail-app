@@ -16,8 +16,16 @@
         autocomplete="new-password"
         required
         type="password"
-        v-model="form.password"
-        :value="form.password"></b-input>
+        v-model="form.password1"
+        :value="form.password1"></b-input>
+    </b-field>
+    <b-field label="Confirm Password">
+      <b-input
+        autocomplete="new-password"
+        required
+        type="password"
+        v-model="form.password2"
+        :value="form.password2"></b-input>
     </b-field>
     <div class="form-actions">
       <b-input type="submit" value="Continue..." custom-class="button is-primary"></b-input>

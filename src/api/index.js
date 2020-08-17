@@ -40,6 +40,11 @@ function loadTemplate() {
   return apiGet(url);
 }
 
+function postPersonalDetailsRego(form = {}) {
+  const url = `${baseUrl}/register`;
+  return apiPost(url, form);
+}
+
 export default {
   apiPost,
   apiGet,
@@ -47,4 +52,5 @@ export default {
   getLogout,
   postPreview,
   loadTemplate,
+  postPersonalDetailsRego,
 };
