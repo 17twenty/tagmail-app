@@ -1,9 +1,14 @@
 <template>
   <form @submit.prevent="emitSubmit">
-    <b-field label="Username / Email">
+    <b-field label="Username / Email"
+            :type="{ 'is-danger': errorMessage.length > 1 }"
+            >
       <b-input required type="email" v-model="form.email" :value="form.email"></b-input>
     </b-field>
-    <b-field label="Password">
+    <b-field label="Password"
+            :type="{ 'is-danger': errorMessage.length > 1 }"
+            :message="{ [`${errorMessage}`]: errorMessage.length > 1}"
+            >
       <b-input
         required
         type="password"
@@ -28,6 +33,10 @@
 export default {
   name: 'FormLogin',
   props: {
+    errorMessage: {
+      type: String,
+      default: () => '',
+    },
     isLoading: {
       type: Boolean,
       required: false,

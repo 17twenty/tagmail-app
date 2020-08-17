@@ -6,6 +6,7 @@
         <b-tab-item label="Login">
           <FormLogin
             @valid-submit="handleSubmit"
+            :errorMessage="formError"
             :isLoading="isLoading"
             :form="login" />
         </b-tab-item>
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import API from '@/api';
+import { DASHBOARD } from '@/router/route-names';
 import FormLogin from '@/components/FormLogin.vue';
 import Register from '@/containers/Register.vue';
 
@@ -35,11 +38,25 @@ export default {
         email: '',
         password: '',
       },
+      formError: '',
     };
   },
   methods: {
     handleSubmit() {
-      console.log('login event');
+      API
+        .postLogin({ username: this.login.email, password: this.login.password })
+        .then((res) => {
+          this.$router.push({ name: DASHBOARD });
+          console.log(res.data);
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            this.formError = error.response.data.error_message;
+            return;
+          }
+          this.formError = 'Something went wrong, please try again in a few moments';
+        })
+        .finally(() => {});
     },
   },
 };

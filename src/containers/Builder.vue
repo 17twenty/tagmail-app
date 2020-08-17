@@ -1,6 +1,10 @@
 <template>
   <div class="builder-container">
     <div class="left">
+      <div class="save-group">
+        <router-link to="/dashboard"> &lt; Back to Dashboard</router-link>
+        <button class="button is-primary">Save Template</button>
+      </div>
       <div class="centered">
         <Element
           :type="item.type"
@@ -11,11 +15,7 @@
           @down="move(index, index + 1)"
           @update="elementUpdate(index)"
         >
-          <component
-            :is="elementFormMap(item.type)"
-            slot="element-properties"
-            :form="item.data"
-          />
+          <component :is="elementFormMap(item.type)" slot="element-properties" :form="item.data" />
         </Element>
         <p class="help-text" v-if="items.length < 1">
           Add an item to get started...
@@ -25,21 +25,11 @@
     </div>
 
     <div class="right">
-      <button @click="createElement('list')" class="palette-btn">
-        <i class="fas fa-desktop"></i>
-      </button>
-      <button class="palette-btn">
-        <i class="fas fa-mobile-alt"></i>
-      </button>
       <form id="reloader" target="preview" method="POST" :action="tagmailApi">
-        <input type="hidden"
-        name="payload"
-        :value="elementsToString"
-          />
+        <input type="hidden" name="payload" :value="stringIt(items)" />
       </form>
       <iframe
         :src="tagmailApi"
-        name="preview"
         id="preview"
         width="100%"
         height="100%"
@@ -74,7 +64,7 @@ export default {
     FormElementTable,
   },
   mounted() {
-    document.getElementById('reloader').submit();
+    this.updatePreview();
   },
   data() {
     return {
@@ -84,10 +74,7 @@ export default {
   },
   computed: {
     tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
-    },
-    elementsToString() {
-      return JSON.stringify(this.items);
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template`;
     },
   },
   methods: {
@@ -102,8 +89,14 @@ export default {
       return elementForm[elementType];
     },
     updatePreview() {
-      document.getElementById('reloader').submit();
-      this.dirty = false;
+      const payload = this.items;
+      api
+        .postPreview(payload)
+        .then(() => {
+          this.reloadIframe();
+        })
+        .catch(() => {})
+        .finally(() => {});
     },
     addItem(value) {
       const element = value.toLowerCase();
@@ -124,6 +117,11 @@ export default {
       this.items.splice(newIndex, 0, this.items.splice(oldIndex, 1)[0]);
       return this.items; // for testing purposes
     },
+    reloadIframe() {
+      const iframe = document.getElementById('preview');
+      // eslint-disable-next-line no-self-assign
+      iframe.src = iframe.src;
+    },
   },
   watch: {
     items: {
@@ -133,9 +131,6 @@ export default {
       },
     },
     dirty() {
-      if (!this.dirty) {
-        return;
-      }
       setTimeout(async () => {
         this.dirty = false;
         await this.updatePreview();
@@ -153,6 +148,14 @@ export default {
   left: 0;
   right: 0;
 }
+
+.save-group {
+  display: flex;
+  justify-content: space-between;
+  height:      40px;
+  line-height: 40px; /* Same as height  */
+  margin-bottom: 12px;
+}
 /* Control the left side */
 .left {
   left: 0;
@@ -162,7 +165,6 @@ export default {
   & .help-text {
     text-align: center;
   }
-
 }
 
 /* Control the right side */

@@ -26,6 +26,7 @@ const routes = [
   },
   {
     path: '/dashboard',
+    name: routeNames.DASHBOARD,
     component: Dashboard,
     props: true,
     beforeEnter(to, from, next) {
