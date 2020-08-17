@@ -103,7 +103,6 @@ export default {
         DefaultTextColor: '575757',
         MutedTextColor: 'b3b3b3',
         TitleTextColor: '222222',
-        ProjectName: 'Tagmail',
       },
     };
   },
@@ -115,7 +114,6 @@ export default {
   methods: {
     saveTemplate() {
       this.isSaving = true;
-      console.log('Saving template', this.templateID);
       const payload = {
         template_name: 'template',
         data: this.items,
@@ -189,8 +187,8 @@ export default {
 
 <style lang="scss" scoped>
 .builder-container {
-  height: 90vh;
   width: 97%;
+  min-height: 100vh;
   display: flex;
   left: 0;
   right: 0;
