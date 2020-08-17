@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseUrl = `${process.env.VUE_APP_TAGMAIL_API_URL}/app`;
-// const baseUrl = 'http://localhost:9001/app';
 
 function apiPost(url = '', data = {}, headers = {}) {
   return axios.post(url, data, {
@@ -35,6 +34,7 @@ function getLogout() {
   const url = `${baseUrl}/logout`;
   return apiGet(url);
 }
+
 function loadTemplate() {
   const url = `${baseUrl}/load-template`;
   return apiGet(url);

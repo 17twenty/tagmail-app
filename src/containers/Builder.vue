@@ -26,7 +26,8 @@
 
     <div class="right">
       <form id="reloader" target="preview" method="POST" :action="tagmailApi">
-        <input type="hidden" name="payload" :value="stringIt(items)" />
+        <input type="hidden" name="items" :value="stringIt(items)" />
+        <input type="hidden" name="template" :value="stringIt(themeConfig)" />
       </form>
       <iframe
         :src="tagmailApi"
@@ -79,6 +80,22 @@ export default {
     return {
       dirty: false,
       items: [],
+      themeConfig: {
+        WebFont: 'Lato',
+        LogoURI: 'https://ucarecdn.com/feabb7ae-302b-4975-988e-eac0d6e3ac3f/',
+        LogoPosition: 'center',
+        LogoWidth: 120,
+        BorderRadius: 4,
+        BodyBackgroundColor: 'fcfcfc',
+        HighlightColor: '18a0fb',
+        ContentBackgroundColor: 'ffffff',
+        ContentBorderColor: 'E5E5E5',
+        ButtonTextColor: 'ffffff',
+        DefaultTextColor: '575757',
+        MutedTextColor: 'b3b3b3',
+        TitleTextColor: '222222',
+        ProjectName: 'Tagmail',
+      },
     };
   },
   computed: {

@@ -70,6 +70,6 @@ export default {
   overflow-x: auto;
   & * {
     padding: 12px 12px;
-}
+  }
 }
 </style>
