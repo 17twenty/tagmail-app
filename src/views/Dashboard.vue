@@ -60,6 +60,7 @@ export default {
   height: 100%;
 }
 .main-view {
+  border-radius: 4px;
   padding: 12px;
   width: 100%;
   height: 100%;
