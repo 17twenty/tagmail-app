@@ -5,7 +5,7 @@
       <router-link to="/dashboard/email-designs">Email Templates</router-link>
       <router-link to="/sending-preferences">Sending Preferences</router-link>
       <router-link to="/dashboard/theme-logo-branding">Project Theme</router-link>
-      <router-link to="/stats-and-metrics">Stats and Metrics</router-link>
+      <a class="is-disabled has-text-grey-light">Stats and Metrics</a>
     </div>
     <div class="sidebar-end">
       <router-link to="/logout">Logout</router-link>
@@ -27,6 +27,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
+
+.is-disabled {
+  cursor: not-allowed;
+}
 
 .sidebar {
   width: 30%;

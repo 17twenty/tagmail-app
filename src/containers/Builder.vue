@@ -3,7 +3,11 @@
     <div class="left">
       <div class="save-group">
         <router-link to="/dashboard"> &lt; Back to Dashboard</router-link>
-        <button class="button is-primary">Save Template</button>
+        <button @click="saveTemplate()"
+        class="button is-primary"
+        :class="{ 'is-loading': this.isSaving }">
+          Save Template
+        </button>
       </div>
       <div class="centered">
         <Element
@@ -79,6 +83,8 @@ export default {
   data() {
     return {
       dirty: false,
+      isSaving: false,
+      templateID: null,
       items: [],
       themeConfig: {
         WebFont: 'Lato',
@@ -104,6 +110,23 @@ export default {
     },
   },
   methods: {
+    saveTemplate() {
+      this.isSaving = true;
+      console.log('Saving template', this.templateID);
+      const payload = {
+        template_name: 'template',
+        data: this.items,
+      };
+      api
+        .postTemplate(this.templateID, payload)
+        .then((res) => {
+          console.log(res);
+          this.templateID = res.data.template_id;
+        })
+        .finally(() => {
+          this.isSaving = false;
+        });
+    },
     stringIt(element) {
       return JSON.stringify(element);
     },
@@ -173,7 +196,7 @@ export default {
 .save-group {
   display: flex;
   justify-content: space-between;
-  height:      40px;
+  height: 40px;
   line-height: 40px; /* Same as height  */
   margin-bottom: 12px;
 }

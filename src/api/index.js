@@ -25,6 +25,15 @@ function postLogin(params = {}) {
   return apiPost(url, params);
 }
 
+function postTemplate(templateID = null, params = {}) {
+  if (templateID) {
+    const url = `${baseUrl}/template/${templateID}`;
+    return apiPost(url, params);
+  }
+  const url = `${baseUrl}/template`;
+  return apiPost(url, params);
+}
+
 function postPreview(params = {}) {
   const url = `${baseUrl}/create`;
   return apiPost(url, params);
@@ -44,6 +53,7 @@ export default {
   apiPost,
   apiGet,
   postLogin,
+  postTemplate,
   getLogout,
   postPreview,
   loadTemplate,
