@@ -163,7 +163,7 @@
           </div>
         </div>
         <div class="button-actions">
-          <b-button type="is-primary">Save Changes</b-button>
+          <b-button @click="postSaveTheme" type="is-primary">Save Changes</b-button>
         </div>
       </div>
       <div class="theme-preview-container">
@@ -221,6 +221,7 @@ export default {
       this.logoURI = blob;
       this.closeModal();
     },
+    postSaveTheme() {},
   },
 };
 </script>
