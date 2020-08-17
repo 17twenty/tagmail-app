@@ -8,7 +8,7 @@
             <p class="brand-property">Your Brand Logo</p>
           </div>
           <div class="cell medium tall">
-            <a @click="showModal"><img :src="logoURI" alt=""/></a>
+            <a @click="showModal"><img :src="logoUri" alt=""/></a>
           </div>
         </div>
         <div class="row">
@@ -91,7 +91,7 @@
             <p class="brand-property">Highlight Colour</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="highlightColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="highlightColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -135,7 +135,7 @@
             <p class="brand-property">Default Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="defaultTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="defaultTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -146,7 +146,7 @@
             <p class="brand-property">Muted Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="mutedTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="mutedTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -157,7 +157,7 @@
             <p class="brand-property">Title Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="titleTextColour" />
+            <InputColourPicker class="card-shadow brand-value" v-model="titleTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -183,6 +183,8 @@ import InputColourPicker from '@/components/base/inputColourPicker.vue';
 import ThemePreviewer from '@/components/ThemePreviewer.vue';
 import LogoUploader from '@/components/LogoUploader.vue';
 
+import api from '@/api';
+
 export default {
   name: 'ThemeLogoBranding',
   components: {
@@ -201,19 +203,19 @@ export default {
     return {
       isModalVisible: false,
       webFont: this.theme.webFont,
-      logoURI: this.theme.logoURI,
+      logoUri: this.theme.logoUri,
       logoPosition: this.theme.logoPosition,
       logoWidth: this.theme.logoWidth,
       borderRadius: this.theme.borderRadius,
       bodyBackgroundColor: this.theme.bodyBackgroundColor,
-      highlightColour: this.theme.highlightColour,
+      highlightColor: this.theme.highlightColor,
       contentBackgroundColor: this.theme.contentBackgroundColor,
       contentBorderColor: this.theme.contentBorderColor,
       buttonTextColor: this.theme.buttonTextColor,
-      defaultTextColour: this.theme.defaultTextColour,
-      mutedTextColour: this.theme.mutedTextColour,
-      titleTextColour: this.theme.titleTextColour,
-      projectName: this.theme.projectName,
+      defaultTextColor: this.theme.defaultTextColor,
+      mutedTextColor: this.theme.mutedTextColor,
+      titleTextColor: this.theme.titleTextColor,
+      projectId: this.theme.projectId,
     };
   },
   methods: {
@@ -224,10 +226,12 @@ export default {
       this.isModalVisible = true;
     },
     blobStuff(blob) {
-      this.logoURI = blob;
+      this.logoUri = blob;
       this.closeModal();
     },
-    postSaveTheme() {},
+    async postSaveTheme() {
+      await api.postProjectTheme(this.$data);
+    },
   },
 };
 </script>

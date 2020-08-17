@@ -16,16 +16,16 @@
       class="theme-page"
     >
       <div class="theme-title-text">
-        <ThemeTitleText :colour="theme.titleTextColour" />
+        <ThemeTitleText :colour="theme.titleTextColor" />
       </div>
       <div class="theme-default-text">
-        <ThemeTextBlock :colour="theme.defaultTextColour" />
+        <ThemeTextBlock :colour="theme.defaultTextColor" />
       </div>
       <div class="theme-muted-text">
-        <ThemeTextFooter :colour="theme.mutedTextColour" />
+        <ThemeTextFooter :colour="theme.mutedTextColor" />
       </div>
       <div class="theme-button">
-        <ThemeButton :colour="theme.highlightColour">
+        <ThemeButton :colour="theme.highlightColor">
           <span
             :style="{ backgroundColor: theme.buttonTextColor }"
             class="theme-button-text"
@@ -36,7 +36,7 @@
         <hr :style="{ backgroundColor: 'darkgray' }" />
       </div>
       <div class="theme-footer">
-        <ThemeTextFooter :colour="theme.mutedTextColour" />
+        <ThemeTextFooter :colour="theme.mutedTextColor" />
       </div>
     </div>
   </div>

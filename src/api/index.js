@@ -34,6 +34,10 @@ function getProjectTheme() {
   const url = `${baseUrl}/project/theme`;
   return apiGet(url);
 }
+function postProjectTheme(payload = {}) {
+  const url = `${baseUrl}/project/theme`;
+  return apiPost(url, payload);
+}
 
 export default {
   postLogin,
@@ -43,4 +47,5 @@ export default {
   postPersonalDetailsRego,
   getProject,
   getProjectTheme,
+  postProjectTheme,
 };
