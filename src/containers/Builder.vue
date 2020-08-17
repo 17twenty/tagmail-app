@@ -3,7 +3,11 @@
     <div class="left">
       <div class="save-group">
         <router-link to="/dashboard"> &lt; Back to Dashboard</router-link>
-        <button class="button is-primary">Save Template</button>
+        <button @click="saveTemplate()"
+        class="button is-primary"
+        :class="{ 'is-loading': this.isSaving }">
+          Save Template
+        </button>
       </div>
       <div class="centered">
         <Element
@@ -26,7 +30,8 @@
 
     <div class="right">
       <form id="reloader" target="preview" method="POST" :action="tagmailApi">
-        <input type="hidden" name="payload" :value="stringIt(items)" />
+        <input type="hidden" name="items" :value="stringIt(items)" />
+        <input type="hidden" name="template" :value="stringIt(themeConfig)" />
       </form>
       <iframe
         :src="tagmailApi"
@@ -67,26 +72,64 @@ export default {
   },
   mounted() {
     api
-      .loadTemplate()
+      .getTemplate(this.templateID)
       .then((res) => {
-        this.items = res.data;
+        console.log(res);
+        this.items = res.data.data;
         this.updatePreview();
       })
-      .catch(() => {})
+      .catch((error) => {
+        console.log(error);
+      })
       .finally(() => {});
   },
   data() {
     return {
       dirty: false,
+      isSaving: false,
+      templateID: null,
       items: [],
+      themeConfig: {
+        WebFont: 'Lato',
+        LogoURI: 'https://ucarecdn.com/feabb7ae-302b-4975-988e-eac0d6e3ac3f/',
+        LogoPosition: 'center',
+        LogoWidth: 120,
+        BorderRadius: 4,
+        BodyBackgroundColor: 'fcfcfc',
+        HighlightColor: '18a0fb',
+        ContentBackgroundColor: 'ffffff',
+        ContentBorderColor: 'E5E5E5',
+        ButtonTextColor: 'ffffff',
+        DefaultTextColor: '575757',
+        MutedTextColor: 'b3b3b3',
+        TitleTextColor: '222222',
+        ProjectName: 'Tagmail',
+      },
     };
   },
   computed: {
     tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/preview`;
+      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template/preview`;
     },
   },
   methods: {
+    saveTemplate() {
+      this.isSaving = true;
+      console.log('Saving template', this.templateID);
+      const payload = {
+        template_name: 'template',
+        data: this.items,
+      };
+      api
+        .postTemplate(this.templateID, payload)
+        .then((res) => {
+          console.log(res);
+          this.templateID = res.data.template_id;
+        })
+        .finally(() => {
+          this.isSaving = false;
+        });
+    },
     stringIt(element) {
       return JSON.stringify(element);
     },
@@ -156,7 +199,7 @@ export default {
 .save-group {
   display: flex;
   justify-content: space-between;
-  height:      40px;
+  height: 40px;
   line-height: 40px; /* Same as height  */
   margin-bottom: 12px;
 }

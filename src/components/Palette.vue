@@ -1,5 +1,8 @@
 <template>
   <section class="palette-container">
+    <button @click="createElement('text')" class="palette-btn is-outline is-rounded">
+      <i class="fa fa-font"></i>
+    </button>
     <button @click="createElement('button')" class="palette-btn is-outline is-rounded">
       <i class="fa fa-hand-pointer"></i>
     </button>
@@ -8,9 +11,6 @@
     </button>
     <button @click="createElement('separator')" class="palette-btn is-outline is-rounded">
       <i class="fa fa-grip-lines"></i>
-    </button>
-    <button @click="createElement('text')" class="palette-btn is-outline is-rounded">
-      <i class="fa fa-font"></i>
     </button>
     <button @click="createElement('list')" class="palette-btn is-outline is-rounded">
       <i class="fas fa-list-ul"></i>

@@ -7,6 +7,24 @@ function postLogin(params = {}) {
   return apiPost(url, params);
 }
 
+function getTemplate(templateID = null) {
+  if (templateID) {
+    const url = `${baseUrl}/template/${templateID}`;
+    return apiGet(url);
+  }
+  const url = `${baseUrl}/template`;
+  return apiGet(url);
+}
+
+function postTemplate(templateID = null, params = {}) {
+  if (templateID) {
+    const url = `${baseUrl}/template/${templateID}`;
+    return apiPost(url, params);
+  }
+  const url = `${baseUrl}/template`;
+  return apiPost(url, params);
+}
+
 function postPreview(params = {}) {
   const url = `${baseUrl}/create`;
   return apiPost(url, params);
@@ -14,10 +32,6 @@ function postPreview(params = {}) {
 
 function getLogout() {
   const url = `${baseUrl}/logout`;
-  return apiGet(url);
-}
-function loadTemplate() {
-  const url = `${baseUrl}/load-template`;
   return apiGet(url);
 }
 
@@ -41,6 +55,7 @@ function postProjectTheme(payload = {}) {
 
 export default {
   postLogin,
+  postTemplate,
   getLogout,
   postPreview,
   loadTemplate,
@@ -48,4 +63,5 @@ export default {
   getProject,
   getProjectTheme,
   postProjectTheme,
+  getTemplate,
 };
