@@ -69,6 +69,9 @@ export default {
 .key-input {
   display: flex;
   align-items: center;
+  & .control {
+    flex-grow: 1;
+  }
 }
 .regenerate {
   display: flex;
