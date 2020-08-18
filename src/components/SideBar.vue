@@ -3,7 +3,7 @@
     <p class="subtitle">{{projectName}}</p>
     <div class="sidebar-items">
       <router-link to="/dashboard/email-designs">Email Templates</router-link>
-      <router-link to="/sending-preferences">Sending Preferences</router-link>
+      <router-link to="/dashboard/sending-preferences">Sending Preferences</router-link>
       <router-link to="/dashboard/theme-logo-branding">Project Theme</router-link>
       <a class="is-disabled has-text-grey-light">Stats and Metrics</a>
     </div>
