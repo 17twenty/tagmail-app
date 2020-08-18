@@ -19,6 +19,21 @@ const routes = [
   {
     path: '/editor',
     name: 'Editor',
+    props: true,
+    async beforeEnter(to, from, next) {
+      try {
+        const resp = await Promise.allSettled([
+          api.getProjectTheme(),
+          api.getProject(),
+        ]);
+        const [theme, project] = resp;
+        to.params.theme = theme.value.data;
+        to.params.project = project.value.data;
+        next();
+      } catch (error) {
+        next({ name: routeNames.LOGIN });
+      }
+    },
     component: Editor,
   },
   {
