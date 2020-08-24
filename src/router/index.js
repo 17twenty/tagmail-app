@@ -44,7 +44,6 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: routeNames.DASHBOARD,
     component: Dashboard,
     props: true,
     async beforeEnter(to, from, next) {
@@ -58,8 +57,9 @@ const routes = [
     },
     children: [
       {
-        path: 'email-designs',
-        name: routeNames.EMAIL_DESIGNS,
+        path: '',
+        name: routeNames.DASHBOARD,
+        alias: 'templates',
         async beforeEnter(to, from, next) {
           try {
             const { data } = await api.getProject();
