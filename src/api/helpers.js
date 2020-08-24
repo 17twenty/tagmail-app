@@ -78,3 +78,20 @@ export function apiGet(url = '', headers = {}) {
     ],
   });
 }
+
+export function apiDelete(url = '', headers = {}) {
+  return axios.delete(url, {
+    headers: {
+      ...headers,
+    },
+    withCredentials: true,
+    transformRequest: [
+      ...axios.defaults.transformRequest,
+      transformSnakeCase,
+    ],
+    transformResponse: [
+      ...axios.defaults.transformResponse,
+      transformCamelCase,
+    ],
+  });
+}

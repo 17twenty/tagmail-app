@@ -33,11 +33,8 @@
             <b-field>
               <b-select expanded v-model.trim="webFont" placeholder="font...">
                 <option selected value="Arial">Arial</option>
-                <option value="Caveat">Caveat</option>
                 <option value="Comfortaa">Comfortaa</option>
-                <option value="Commic Sans MS">Commic Sans MS</option>
                 <option value="Courier New">Courier New</option>
-                <option value="EB Garamond">EB Garamond</option>
                 <option value="Georgia">Georgia</option>
                 <option value="Impact">Impact</option>
                 <option value="Lato">Lato</option>

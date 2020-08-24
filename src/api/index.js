@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from './helpers';
+import { apiGet, apiPost, apiDelete } from './helpers';
 
 const baseUrl = `${process.env.VUE_APP_TAGMAIL_API_URL}/app`;
 
@@ -53,6 +53,16 @@ function postProjectTheme(payload = {}) {
   return apiPost(url, payload);
 }
 
+function renameTemplate(templateID, payload = {}) {
+  const url = `${baseUrl}/template/${templateID}/rename`;
+  return apiPost(url, payload);
+}
+
+function deleteTemplateByName(templateName) {
+  const url = `${baseUrl}/template/${templateName}`;
+  return apiDelete(url);
+}
+
 export default {
   postLogin,
   postTemplate,
@@ -60,7 +70,9 @@ export default {
   postPreview,
   postPersonalDetailsRego,
   getProject,
+  getTemplate,
   getProjectTheme,
   postProjectTheme,
-  getTemplate,
+  renameTemplate,
+  deleteTemplateByName,
 };

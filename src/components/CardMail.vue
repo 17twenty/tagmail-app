@@ -11,13 +11,12 @@
       </div>
       <div class="row">
         <p>Created:</p>
-        <p>{{mail.createdAt}}</p>
+        <p>{{mail.createdAt | formatDate }}</p>
       </div>
     </div>
     <div class="mail-card-actions">
       <a @click="emitGetCode">Get Code</a>
       <a @click="emitEdit">Edit Template</a>
-      <a @click="emitDuplicate">Duplicate Template</a>
       <a @click="emitRename">Rename Template</a>
     </div>
     <div class="mail-card-actions delete-action">
@@ -41,9 +40,6 @@ export default {
     },
     emitEdit() {
       this.$emit('edit');
-    },
-    emitDuplicate() {
-      this.$emit('duplicate');
     },
     emitRename() {
       this.$emit('rename');

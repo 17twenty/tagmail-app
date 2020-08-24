@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/editor/:templateId?',
-    name: 'Editor',
+    name: 'editor',
     props: true,
     async beforeEnter(to, from, next) {
       try {
@@ -60,6 +60,7 @@ const routes = [
         path: '',
         name: routeNames.DASHBOARD,
         alias: 'templates',
+        props: true,
         async beforeEnter(to, from, next) {
           try {
             const { data } = await api.getProject();
@@ -69,7 +70,7 @@ const routes = [
             next({ name: routeNames.LOGIN });
           }
         },
-        component: () => import(/* webpackChunkName: "email-designs" */ '../views/EmailDesigns.vue'),
+        component: () => import(/* webpackChunkName: "TemplateList" */ '../views/TemplateList.vue'),
       },
       {
         path: 'theme-logo-branding',
