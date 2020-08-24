@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <img alt="Vue logo" width="120px" style="padding: 1em;" src="@/assets/logo.png">
-    <Builder :theme="theme" :project="project" :template="getRouteTemplateID()" />
+    <Builder :theme="theme" :project="project" :template="templateId" />
   </div>
 </template>
 
@@ -23,10 +23,9 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    getRouteTemplateID() {
-      return this.$route.params.templateId;
+    templateId: {
+      type: String,
+      required: true,
     },
   },
 };
