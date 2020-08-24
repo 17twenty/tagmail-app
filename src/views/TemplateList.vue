@@ -53,26 +53,9 @@ export default {
           value: mail.templateName,
         },
         trapFocus: true,
-        onConfirm: ((newName) => {
-          const payload = {
-            templateName: newName,
-          };
-          api
-            .renameTemplate(mail.templateId, payload)
-            .then(() => {
-              // eslint-disable-next-line no-restricted-syntax
-              for (const i in this.designs) {
-                if (this.designs[i].templateId === mail.templateId) {
-                  this.designs[i].templateName = newName;
-                  break;
-                }
-              }
-              this.$buefy.snackbar.open({
-                message: `Template renamed to ${newName}`,
-                type: 'is-success',
-              });
-            });
-        }),
+        onConfirm: (newName) => {
+          this.renameTemplate(mail, newName);
+        },
       });
     },
     handleDelete(mail) {
@@ -84,31 +67,55 @@ export default {
         type: 'is-danger',
         hasIcon: true,
         onConfirm: () => {
-          api.deleteTemplateByName(mail.templateName).finally(() => {
-            // eslint-disable-next-line no-restricted-syntax
-            for (const i in this.designs) {
-              if (this.designs[i].templateId === mail.templateId) {
-                this.designs.splice(i, 1);
-                break;
-              }
-            }
-          });
-          this.$buefy.toast.open('Template deleted!');
+          this.deleteTemplate(mail);
         },
       });
+    },
+    async renameTemplate(mail, templateName = '') {
+      try {
+        const payload = {
+          templateName,
+        };
+        await api.renameTemplate(mail.templateId, payload);
+        const index = this.designs.findIndex((design) => design.templateId === mail.templateId);
+        this.designs[index].templateName = templateName;
+
+        this.$buefy.snackbar.open({
+          message: `Template renamed to ${templateName}`,
+          type: 'is-success',
+        });
+      } catch (error) {
+        this.$buefy.snackbar.open({
+          message: `There was an issue renaming template ${templateName}`,
+          type: 'is-danger',
+        });
+      }
+    },
+    async deleteTemplate(mail) {
+      try {
+        await api.deleteTemplateByName(mail.templateName);
+        const index = this.designs.findIndex((design) => design.templateId === mail.templateId);
+        this.designs.splice(index, 1);
+        this.$buefy.toast.open('Template deleted!');
+      } catch (error) {
+        this.$buefy.toast.open({
+          message: 'There was an issue deleting template',
+          type: 'is-danger',
+        });
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.email-design-container{
+.email-design-container {
   padding: 1em;
   display: flex;
   flex-direction: column;
 }
 
-.search-bar{
+.search-bar {
   margin: 1em;
   display: flex;
   align-items: center;
@@ -127,5 +134,4 @@ export default {
     margin: 1em;
   }
 }
-
 </style>
