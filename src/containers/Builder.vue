@@ -87,7 +87,6 @@ export default {
     },
   },
   mounted() {
-    console.log(`Got ${this.template}`);
     api
       .getTemplate(this.template)
       .then((res) => {
