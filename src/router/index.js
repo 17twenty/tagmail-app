@@ -17,7 +17,7 @@ const routes = [
     },
   },
   {
-    path: '/editor',
+    path: '/editor/:templateId?',
     name: 'Editor',
     props: true,
     async beforeEnter(to, from, next) {
@@ -31,6 +31,7 @@ const routes = [
         to.params.project = project.value.data;
         next();
       } catch (error) {
+        console.log(`Error ${error}`);
         next({ name: routeNames.LOGIN });
       }
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="theme-logo-branding-container">
-    <h1 class="subtitle">Project Theme and Logo</h1>
+    <h1 class="title">Project Theme and Logo</h1>
     <div class="theme-container">
       <div class="theme-builder">
         <div class="row">

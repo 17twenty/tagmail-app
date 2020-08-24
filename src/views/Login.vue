@@ -45,9 +45,8 @@ export default {
     handleSubmit() {
       API
         .postLogin({ username: this.login.email, password: this.login.password })
-        .then((res) => {
+        .then(() => {
           this.$router.push({ name: DASHBOARD });
-          console.log(res.data);
         })
         .catch((error) => {
           if (error.response.status === 403) {

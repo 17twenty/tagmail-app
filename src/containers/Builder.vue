@@ -3,9 +3,11 @@
     <div class="left">
       <div class="save-group">
         <router-link to="/dashboard"> &lt; Back to Dashboard</router-link>
-        <button @click="saveTemplate()"
-        class="button is-primary"
-        :class="{ 'is-loading': this.isSaving }">
+        <button
+          @click="saveTemplate()"
+          class="button is-primary"
+          :class="{ 'is-loading': this.isSaving }"
+        >
           Save Template
         </button>
       </div>
@@ -79,13 +81,21 @@ export default {
       type: Object,
       required: true,
     },
+    template: {
+      type: String,
+      required: false,
+    },
   },
   mounted() {
+    console.log(`Got ${this.template}`);
     api
-      .getTemplate(this.templateID)
+      .getTemplate(this.template)
       .then((res) => {
         console.log(res);
         this.items = res.data.data;
+        this.templateId = res.data.templateId;
+        this.templateVersion = res.data.version;
+        this.templateName = res.data.templateName;
         this.updatePreview();
       })
       .catch((error) => {
@@ -98,6 +108,8 @@ export default {
       dirty: false,
       isSaving: false,
       templateID: null,
+      templateName: '',
+      templateVersion: 0,
       items: [],
       themeConfig: {
         WebFont: this.theme.webFont,
@@ -123,17 +135,40 @@ export default {
     },
   },
   methods: {
+    getTemplateName() {
+      this.$buefy.dialog.prompt({
+        message: 'Template name?',
+        inputAttrs: {
+          placeholder: 'ActivationEmail',
+          maxlength: 20,
+        },
+        trapFocus: true,
+        onConfirm: ((templateName) => {
+          this.templateName = templateName;
+          this.saveTemplate();
+        }),
+      });
+    },
     saveTemplate() {
+      if (!this.templateName) {
+        this.getTemplateName();
+        return;
+      }
       this.isSaving = true;
       const payload = {
-        template_name: 'template',
+        templateName: this.templateName,
+        templateId: this.templateID,
+        version: this.templateVersion,
         data: this.items,
       };
       api
         .postTemplate(this.templateID, payload)
         .then((res) => {
-          console.log(res);
-          this.templateID = res.data.template_id;
+          console.log(res.data);
+          this.templateId = res.data.templateId;
+          this.templateVersion = res.data.version;
+          this.templateName = res.data.templateName;
+          this.$buefy.toast.open(`Saved version ${this.templateVersion} of template '${this.templateName}'`);
         })
         .finally(() => {
           this.isSaving = false;
