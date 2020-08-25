@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/',
     redirect: {
-      name: routeNames.EMAIL_DESIGNS,
+      name: routeNames.DASHBOARD,
     },
   },
   {
@@ -45,6 +45,8 @@ const routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    name: routeNames.DASHBOARD,
+    redirect: { name: 'templates' },
     props: true,
     async beforeEnter(to, from, next) {
       try {
@@ -57,9 +59,8 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: routeNames.DASHBOARD,
-        alias: 'templates',
+        path: '/templates',
+        name: routeNames.TEMPLATES,
         props: true,
         async beforeEnter(to, from, next) {
           try {
@@ -73,7 +74,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "TemplateList" */ '../views/TemplateList.vue'),
       },
       {
-        path: 'theme-logo-branding',
+        path: '/theme-logo-branding',
         name: routeNames.THEME_LOGO_BRANDING,
         props: true,
         async beforeEnter(to, from, next) {
@@ -93,7 +94,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "theme-logo-branding" */ '../views/ThemeLogoBranding.vue'),
       },
       {
-        path: 'preferences',
+        path: '/preferences',
         name: routeNames.PREFERENCES,
         props: true,
         async beforeEnter(to, from, next) {

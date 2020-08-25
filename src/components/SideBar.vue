@@ -1,10 +1,10 @@
 <template>
   <aside class="sidebar">
-    <p class="subtitle">{{projectName}}</p>
+    <p class="subtitle">{{ projectName }}</p>
     <div class="sidebar-items">
-      <router-link :to="{name:'dashboard'}">Email Templates</router-link>
-      <router-link :to="{name:'preferences'}">Sending Preferences</router-link>
-      <router-link :to="{name:'theme-logo-branding'}">Project Theme</router-link>
+      <router-link :to="{ name: 'templates' }">Email Templates</router-link>
+      <router-link :to="{ name: 'preferences' }">Sending Preferences</router-link>
+      <router-link :to="{ name: 'theme-logo-branding' }">Project Theme</router-link>
       <a class="is-disabled has-text-grey-light">Stats and Metrics</a>
     </div>
     <div class="sidebar-end">
@@ -52,7 +52,7 @@ export default {
     font-weight: 900;
   }
 }
-.sidebar-end{
+.sidebar-end {
   width: 50%;
   & a {
     color: $dark;
