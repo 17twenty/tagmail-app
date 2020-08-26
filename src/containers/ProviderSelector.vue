@@ -74,6 +74,18 @@ export default {
       });
     },
   },
+  watch: {
+    provider: {
+      deep: true,
+      handler() {
+        this.form = {
+          publicKey: '',
+          privateKey: '',
+          region: '',
+        };
+      },
+    },
+  },
 };
 </script>
 

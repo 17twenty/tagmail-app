@@ -18,6 +18,14 @@
         placeholder="xxx-xxxx-xxx-xxx"
       ></b-input>
     </b-field>
+    <b-field label="Region">
+      <b-input
+        autocomplete="new-password"
+        required
+        v-model="form.region"
+        placeholder="ap-southeast-2"
+      ></b-input>
+    </b-field>
     <div class="form-actions">
       <b-input
         :loading="isLoading"
