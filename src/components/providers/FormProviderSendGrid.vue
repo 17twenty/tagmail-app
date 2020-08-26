@@ -6,7 +6,7 @@
         type="password"
         password-reveal
         required
-        v-model="form.publicKey"
+        v-model="form.privateKey"
         placeholder="xxx-xxxx-xxx-xxx"
       ></b-input>
     </b-field>
