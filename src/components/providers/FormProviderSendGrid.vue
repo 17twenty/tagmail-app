@@ -46,4 +46,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.form-actions {
+  margin-top: 3em;
+}
+</style>
