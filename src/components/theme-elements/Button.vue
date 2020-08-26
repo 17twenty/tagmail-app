@@ -2,6 +2,7 @@
   <div
     :style="{
       backgroundColor: colour,
+      borderRadius: `${radius}px`,
     }"
     class="themed-button"
   >
@@ -14,6 +15,7 @@ export default {
   name: 'Button',
   props: {
     colour: String,
+    radius: Number,
   },
 };
 </script>
@@ -22,7 +24,6 @@ export default {
 @import '@/styles/variables.scss';
 
 .themed-button {
-  border-radius: 4px;
   height: 3em;
   width: 8em;
   display: flex;

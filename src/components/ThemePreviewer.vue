@@ -3,14 +3,28 @@
     class="theme-preview card-shadow"
     :style="{
       backgroundColor: theme.bodyBackgroundColor,
+      borderRadius: theme.borderRadius,
     }"
   >
-    <div class="theme-logo">
-      <img :style="{ width: `${theme.logoWidth}px` }" :src="theme.logoURI" alt="logo" />
+    <div
+      class="theme-logo"
+      :style="{
+        marginRight: rightMargin,
+        marginLeft: leftMargin,
+      }"
+    >
+      <img
+        :style="{
+          width: `${theme.logoWidth}px`,
+        }"
+        :src="theme.logoUri"
+        alt="logo"
+      />
     </div>
     <div
       :style="{
         borderColor: theme.contentBorderColor,
+        borderRadius: `${theme.borderRadius}px`,
         backgroundColor: theme.contentBackgroundColor,
       }"
       class="theme-page"
@@ -25,7 +39,7 @@
         <ThemeTextFooter :colour="theme.mutedTextColor" />
       </div>
       <div class="theme-button">
-        <ThemeButton :colour="theme.highlightColor">
+        <ThemeButton :colour="theme.highlightColor" :radius="theme.borderRadius">
           <span
             :style="{ backgroundColor: theme.buttonTextColor }"
             class="theme-button-text"
@@ -33,7 +47,7 @@
         </ThemeButton>
       </div>
       <div class="theme-separator">
-        <hr :style="{ backgroundColor: 'darkgray' }" />
+        <hr :style="{ backgroundColor: 'lightgray', height: '1px' }" />
       </div>
       <div class="theme-footer">
         <ThemeTextFooter :colour="theme.mutedTextColor" />
@@ -62,6 +76,20 @@ export default {
       required: true,
     },
   },
+  computed: {
+    leftMargin() {
+      if (this.theme.logoPosition === 'left') {
+        return '10%';
+      }
+      return 'auto';
+    },
+    rightMargin() {
+      if (this.theme.logoPosition === 'right') {
+        return '10%';
+      }
+      return 'auto';
+    },
+  },
 };
 </script>
 
@@ -69,6 +97,8 @@ export default {
 @import '@/styles/variables.scss';
 
 .theme-preview {
+  padding-top: 1.2em;
+  padding-bottom: 1.8em;
   width: 100%;
   height: 100%;
   display: flex;

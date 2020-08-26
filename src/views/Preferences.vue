@@ -25,7 +25,7 @@
         <div class="key-input">
           <b-input v-model="apiKey" :value="apiKey"></b-input>
           <div class="regenerate">
-            <p>Regernate Key</p>
+            <p>Regenerate Key</p>
             <i class="fas fa-redo-alt fa-lg"></i>
           </div>
         </div>

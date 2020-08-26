@@ -64,6 +64,7 @@ export default {
 <style lang="scss" scoped>
 .login-card {
   display: flex;
+  border-radius: 4px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

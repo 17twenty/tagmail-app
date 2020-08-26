@@ -15,9 +15,9 @@ export default {
       default: () => '0',
     },
     max: {
-      type: String,
+      type: Number,
       required: false,
-      default: () => '250',
+      default: () => 250,
     },
   },
   methods: {

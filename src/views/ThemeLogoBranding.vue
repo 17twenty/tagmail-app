@@ -5,7 +5,7 @@
       <div class="theme-builder">
         <div class="row">
           <div class="cell medium">
-            <p class="brand-property">Your Brand Logo</p>
+            <p class="brand-property">Project Logo</p>
           </div>
           <div class="cell medium tall">
             <a @click="showModal"><img :src="logoUri" alt=""/></a>
@@ -27,7 +27,7 @@
         </div>
         <div class="row">
           <div class="cell medium">
-            <p class="brand-property">Web Font</p>
+            <p class="brand-property">Font</p>
           </div>
           <div class="cell medium">
             <b-field>
@@ -53,12 +53,12 @@
             <p class="brand-property">Logo Size</p>
           </div>
           <div class="cell small">
-            <span class="card-shadow brand-value"
+            <span class=" brand-value"
               ><p>{{ logoWidth }}</p></span
             >
           </div>
           <div class="cell medium">
-            <InputSlider class="brand-range" v-model="logoWidth" />
+            <InputSlider class="brand-range" v-model.number="logoWidth" />
           </div>
         </div>
         <div class="row">
@@ -66,10 +66,10 @@
             <p class="brand-property">Border Radius</p>
           </div>
           <div class="cell small">
-            <span class="card-shadow brand-value">{{ borderRadius }}</span>
+            <span class=" brand-value">{{ borderRadius }}</span>
           </div>
           <div class="cell medium">
-            <InputSlider class="brand-range" v-model="borderRadius" />
+            <InputSlider :max="20" class="brand-range" v-model.number="borderRadius" />
           </div>
         </div>
         <div class="row">
@@ -77,7 +77,7 @@
             <p class="brand-property">Background Colour</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="bodyBackgroundColor" />
+            <InputColourPicker class=" brand-value" v-model="bodyBackgroundColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -88,7 +88,7 @@
             <p class="brand-property">Highlight Colour</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="highlightColor" />
+            <InputColourPicker class=" brand-value" v-model="highlightColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -99,7 +99,7 @@
             <p class="brand-property">Content Background</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="contentBackgroundColor" />
+            <InputColourPicker class="brand-value" v-model="contentBackgroundColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -110,7 +110,7 @@
             <p class="brand-property">Content Border</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="contentBorderColor" />
+            <InputColourPicker class="brand-value" v-model="contentBorderColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -121,7 +121,7 @@
             <p class="brand-property">Button Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="buttonTextColor" />
+            <InputColourPicker class="brand-value" v-model="buttonTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -132,7 +132,7 @@
             <p class="brand-property">Default Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="defaultTextColor" />
+            <InputColourPicker class="brand-value" v-model="defaultTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -143,7 +143,7 @@
             <p class="brand-property">Muted Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="mutedTextColor" />
+            <InputColourPicker class=" brand-value" v-model="mutedTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -154,7 +154,7 @@
             <p class="brand-property">Title Text</p>
           </div>
           <div class="cell small">
-            <InputColourPicker class="card-shadow brand-value" v-model="titleTextColor" />
+            <InputColourPicker class="brand-value" v-model="titleTextColor" />
           </div>
           <div class="cell medium">
             <span></span>
@@ -307,9 +307,11 @@ export default {
   height: 50px;
 }
 .brand-value {
-  margin: auto;
-  width: 2em;
-  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
+  margin: 4px;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
