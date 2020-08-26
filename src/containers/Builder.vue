@@ -90,7 +90,6 @@ export default {
     api
       .getTemplate(this.template)
       .then((res) => {
-        console.log(res);
         this.items = res.data.data;
         this.templateId = res.data.templateId;
         this.templateVersion = res.data.version;
@@ -112,7 +111,7 @@ export default {
       items: [],
       themeConfig: {
         WebFont: this.theme.webFont,
-        LogoURI: this.theme.LogoUri,
+        LogoUri: this.theme.logoUri,
         LogoPosition: this.theme.logoPosition,
         LogoWidth: this.theme.logoWidth,
         BorderRadius: this.theme.borderRadius,
@@ -163,7 +162,6 @@ export default {
       api
         .postTemplate(this.templateID, payload)
         .then((res) => {
-          console.log(res.data);
           this.templateId = res.data.templateId;
           this.templateVersion = res.data.version;
           this.templateName = res.data.templateName;

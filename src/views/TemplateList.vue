@@ -35,7 +35,7 @@ export default {
     };
   },
   mounted() {
-    console.log('Got:', this.project);
+    // console.log('Got:', this.project);
   },
   methods: {
     handleGetCode(mail) {
@@ -59,7 +59,6 @@ export default {
       });
     },
     handleDelete(mail) {
-      console.log('delete', mail);
       this.$buefy.dialog.confirm({
         title: `Delete '${mail.templateName}'`,
         message: 'Are you sure you want to <b>delete</b> this template?',
