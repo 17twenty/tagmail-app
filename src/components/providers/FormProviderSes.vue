@@ -1,10 +1,16 @@
 <template>
   <form @submit.prevent="emitSave">
     <b-field label="Access key ID">
-      <b-input required v-model="form.publicKey" placeholder="xxx-xxxx-xxx-xxx"></b-input>
+      <b-input
+        autocomplete="disable-autocomplete"
+        required
+        v-model="form.publicKey"
+        placeholder="xxx-xxxx-xxx-xxx"
+      ></b-input>
     </b-field>
     <b-field label="Secret Access Key ID">
       <b-input
+        autocomplete="new-password"
         type="password"
         password-reveal
         required

@@ -2,6 +2,7 @@
   <form @submit.prevent="emitSave">
     <b-field label="Key">
       <b-input
+        autocomplete="disable-autocomplete"
         type="password"
         password-reveal
         required
@@ -11,6 +12,7 @@
     </b-field>
     <div class="form-actions">
       <b-input
+        autocomplete="new-password"
         :loading="isLoading"
         expanded
         type="submit"
