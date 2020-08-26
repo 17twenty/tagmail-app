@@ -41,10 +41,13 @@ export default {
   methods: {
     async handleSubmit({ provider }) {
       try {
+        this.isLoading = true;
         await this.handleProvider(provider);
         this.handleSuccess();
       } catch (error) {
         this.handleError();
+      } finally {
+        this.isLoading = false;
       }
     },
     async handleProvider(provider = '') {
