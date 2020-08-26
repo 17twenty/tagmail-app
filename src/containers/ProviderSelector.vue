@@ -69,6 +69,7 @@ export default {
       });
     },
     handleSuccess() {
+      this.$emit('success');
       this.$buefy.snackbar.open({
         message: 'Successfully saved provider configuration',
       });

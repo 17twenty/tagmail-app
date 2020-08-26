@@ -32,7 +32,7 @@
       </div>
     </div>
     <b-modal :width="500" @close-modal="closeModal" :active.sync="showModal">
-      <ProviderSelector />
+      <ProviderSelector @success="closeModal" />
     </b-modal>
   </div>
 </template>
