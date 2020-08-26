@@ -18,6 +18,8 @@ import FormProviderSes from '@/components/providers/FormProviderSes.vue';
 import FormProviderMailJet from '@/components/providers/FormProviderMailJet.vue';
 import FormProviderSendGrid from '@/components/providers/FormProviderSendGrid.vue';
 
+import api, { PROVIDER_MAILJET, PROVIDER_SES, PROVIDER_SENDGRID } from '../api/providers';
+
 export default {
   name: 'ProviderSelector',
   components: {
@@ -37,8 +39,36 @@ export default {
     };
   },
   methods: {
-    handleSubmit({ provider }) {
-      console.log(provider);
+    async handleSubmit({ provider }) {
+      try {
+        await this.handleProvider(provider);
+        this.handleSuccess();
+      } catch (error) {
+        this.handleError();
+      }
+    },
+    async handleProvider(provider = '') {
+      const proivderMap = {
+        [PROVIDER_MAILJET]: api.postMailJet,
+        [PROVIDER_SENDGRID]: api.postSendGrid,
+        [PROVIDER_SES]: api.postSes,
+      };
+      if (proivderMap[provider] === undefined) {
+        throw Error('Provider not supported');
+      }
+      return proivderMap[provider](this.form);
+    },
+    handleError() {
+      this.$buefy.snackbar.open({
+        message: 'There was an issue saving your provider',
+        type: 'is-danger',
+        indefinite: true,
+      });
+    },
+    handleSuccess() {
+      this.$buefy.snackbar.open({
+        message: 'Successfully saved provider configuration',
+      });
     },
   },
 };
