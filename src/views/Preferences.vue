@@ -65,7 +65,6 @@ export default {
   },
   mounted() {
     api.getAPIKey().then((res) => {
-      console.log(res);
       this.apiKey = res.data.accessToken;
     }).catch((error) => {
       console.log(error);
