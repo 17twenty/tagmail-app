@@ -161,7 +161,9 @@
           </div>
         </div>
         <div class="button-actions">
-          <b-button @click="postSaveTheme" type="is-primary">Save Changes</b-button>
+          <b-button @click="postSaveTheme"
+        :loading="isLoading"
+          type="is-primary">Save Changes</b-button>
         </div>
       </div>
       <div class="theme-preview-container">
@@ -213,6 +215,7 @@ export default {
       mutedTextColor: this.theme.mutedTextColor,
       titleTextColor: this.theme.titleTextColor,
       projectId: this.theme.projectId,
+      isLoading: false,
     };
   },
   methods: {
@@ -227,6 +230,7 @@ export default {
       this.closeModal();
     },
     async postSaveTheme() {
+      this.isLoading = true;
       try {
         await api.postProjectTheme(this.$data);
         this.handleSuccessNotification();
@@ -239,12 +243,14 @@ export default {
         message: 'Theme successfully saved',
         type: 'is-success',
       });
+      this.isLoading = false;
     },
     handleErrorNotification() {
       this.$buefy.snackbar.open({
         message: 'There was an issue saving theme',
         type: 'is-danger',
       });
+      this.isLoading = false;
     },
   },
 };
