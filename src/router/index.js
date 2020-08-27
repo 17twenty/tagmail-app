@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import axios from 'axios';
 import Editor from '../views/Editor.vue';
 import Dashboard from '../views/Dashboard.vue';
 import * as routeNames from './route-names';
@@ -8,6 +9,23 @@ import * as routeNames from './route-names';
 import api from '../api';
 
 Vue.use(VueRouter);
+
+// Create event bus
+export const bus = new Vue();
+
+axios.interceptors.response.use((response) => response, (error) => {
+  if (error.response.status === 401) {
+    bus.$emit('error:401');
+  }
+  if (error.response && error.response.data) {
+    return Promise.reject(error.response.data);
+  }
+  return Promise.reject(error.message);
+});
+
+bus.$on('errors:401', () => {
+  this.$router.push('/login');
+});
 
 const routes = [
   {

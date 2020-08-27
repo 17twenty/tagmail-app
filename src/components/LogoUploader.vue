@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     handleImage() {
-      console.log('hello');
       const input = this.file;
       const reader = new FileReader();
       reader.onload = (e) => {

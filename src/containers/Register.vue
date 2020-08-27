@@ -69,13 +69,13 @@ export default {
         await api.postPersonalDetailsRego(payload);
         this.nextStep();
       } catch (error) {
-        this.handleErrorNotification();
+        this.handleErrorNotification(error.errorMessage);
       }
     },
-    handleErrorNotification() {
+    handleErrorNotification(errorMsg) {
       this.$buefy.snackbar.open({
-        message: 'There was an issue during registation',
-        type: 'is-danger',
+        message: `There was an issue:<br>${errorMsg}`,
+        type: 'is-warning',
         indefinite: true,
       });
     },
