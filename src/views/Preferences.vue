@@ -10,7 +10,7 @@
         <p>You are currently connected to {{ providerName }}</p>
       </div>
       <div class="provider-actions">
-        <a href="" >Change provider</a>
+        <a @click="openModal">Change provider</a>
       </div>
     </div>
 
@@ -33,23 +33,37 @@
         </div>
       </div>
     </div>
+    <b-modal :width="500" @close-modal="closeModal" :active.sync="showModal">
+      <ProviderSelector @success="closeModal" />
+    </b-modal>
   </div>
 </template>
 
 <script>
-
 import api from '@/api';
+import ProviderSelector from '@/containers/ProviderSelector.vue';
 
 export default {
   name: 'Preferences',
+  components: {
+    ProviderSelector,
+  },
   data() {
     return {
+      isLoading: false,
+      showModal: false,
       providerName: 'SES',
       apiKey: '',
       isRegenerating: false,
     };
   },
   methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+    openModal() {
+      this.showModal = true;
+    },
     requestNewKey() {
       this.isRegenerating = true;
       const self = this;
@@ -83,7 +97,7 @@ export default {
 }
 .provider-card {
   display: flex;
-   & p {
+  & p {
     padding: 1em;
     max-width: 150px;
   }
