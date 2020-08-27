@@ -2,7 +2,7 @@
   <div class="card mail-card">
     <div class="mail-card-header">
       <i class="far fa-envelope fa-3x"></i>
-      <p class="subtitle">{{mail.templateName}}</p>
+      <p @click="emitEdit" class="subtitle">{{mail.templateName}}</p>
     </div>
     <div class="metadata">
       <div class="row">

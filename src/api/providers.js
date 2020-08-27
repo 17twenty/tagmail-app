@@ -29,7 +29,7 @@ function postSes({ publicKey, privateKey, region }) {
 
 function postSendGrid({ privateKey }) {
   return apiPost(baseUrl, {
-    PROVIDER_SENDGRID,
+    provider: PROVIDER_SENDGRID,
     config: { key: privateKey },
   });
 }

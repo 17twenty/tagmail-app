@@ -5,7 +5,6 @@
     <div class="provider-container">
       <div class="provider-card">
         <figure class="image is-128x128">
-          <img src="https://bulma.io/images/placeholders/128x128.png" />
         </figure>
         <p>You are currently connected to {{ providerName }}</p>
       </div>

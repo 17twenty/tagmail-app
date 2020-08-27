@@ -222,7 +222,7 @@ export default {
       setTimeout(async () => {
         this.dirty = false;
         await this.updatePreview();
-      }, 500);
+      }, 1000);
     },
   },
 };

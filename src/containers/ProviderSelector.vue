@@ -3,7 +3,7 @@
     <b-field label="Provider">
       <b-select expanded v-model.trim="provider" placeholder="position...">
         <option value="FormProviderSendGrid">Sendgrid</option>
-        <option value="FormProviderMailJet">Mail Jet</option>
+        <option value="FormProviderMailJet">MailJet</option>
         <option selected value="FormProviderSes">SES</option>
       </b-select>
     </b-field>
@@ -51,15 +51,15 @@ export default {
       }
     },
     async handleProvider(provider = '') {
-      const proivderMap = {
+      const providerMap = {
         [PROVIDER_MAILJET]: api.postMailJet,
         [PROVIDER_SENDGRID]: api.postSendGrid,
         [PROVIDER_SES]: api.postSes,
       };
-      if (proivderMap[provider] === undefined) {
+      if (providerMap[provider] === undefined) {
         throw Error('Provider not supported');
       }
-      return proivderMap[provider](this.form);
+      return providerMap[provider](this.form);
     },
     handleError() {
       this.$buefy.snackbar.open({
