@@ -161,9 +161,9 @@
           </div>
         </div>
         <div class="button-actions">
-          <b-button @click="postSaveTheme"
-        :loading="isLoading"
-          type="is-primary">Save Changes</b-button>
+          <b-button @click="postSaveTheme" :loading="isLoading" type="is-primary"
+            >Save Changes</b-button
+          >
         </div>
       </div>
       <div class="theme-preview-container">
