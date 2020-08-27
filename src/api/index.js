@@ -63,6 +63,16 @@ function deleteTemplateByName(templateName) {
   return apiDelete(url);
 }
 
+function getAPIKey() {
+  const url = `${baseUrl}/project/token`;
+  return apiGet(url);
+}
+
+function postNewAPIKey(payload = {}) {
+  const url = `${baseUrl}/project/token`;
+  return apiPost(url, payload);
+}
+
 export default {
   postLogin,
   postTemplate,
@@ -75,4 +85,6 @@ export default {
   postProjectTheme,
   renameTemplate,
   deleteTemplateByName,
+  getAPIKey,
+  postNewAPIKey,
 };

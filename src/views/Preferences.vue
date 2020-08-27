@@ -10,7 +10,7 @@
         <p>You are currently connected to {{ providerName }}</p>
       </div>
       <div class="provider-actions">
-        <a href="">Change provider</a>
+        <a href="" >Change provider</a>
       </div>
     </div>
 
@@ -25,8 +25,10 @@
         <div class="key-input">
           <b-input v-model="apiKey" :value="apiKey"></b-input>
           <div class="regenerate">
-            <p>Regenerate Key</p>
-            <i class="fas fa-redo-alt fa-lg"></i>
+            &nbsp; <a @click="requestNewKey()"> Regenerate Key</a>
+            &nbsp; <i
+          :class="{ 'spin': this.isRegenerating }"
+            class="fas fa-redo-alt fa-lg"></i>
           </div>
         </div>
       </div>
@@ -35,13 +37,39 @@
 </template>
 
 <script>
+
+import api from '@/api';
+
 export default {
   name: 'Preferences',
   data() {
     return {
       providerName: 'SES',
-      apiKey: '1232345232342342',
+      apiKey: '',
+      isRegenerating: false,
     };
+  },
+  methods: {
+    requestNewKey() {
+      this.isRegenerating = true;
+      const self = this;
+      setTimeout(() => { self.isRegenerating = false; }, 2000);
+
+      api.postNewAPIKey().then((res) => {
+        this.apiKey = res.data.accessToken;
+      }).catch((error) => {
+        console.log(error);
+      }).finally(() => {
+      });
+    },
+  },
+  mounted() {
+    api.getAPIKey().then((res) => {
+      console.log(res);
+      this.apiKey = res.data.accessToken;
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {});
   },
 };
 </script>
@@ -76,9 +104,18 @@ export default {
 .regenerate {
   display: flex;
   align-items: center;
-  & p {
+  & a {
     margin-left: 1em;
     margin-right: 0.5em;
   }
+}
+
+.spin {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
 }
 </style>
