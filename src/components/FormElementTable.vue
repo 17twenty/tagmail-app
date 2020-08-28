@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-field label="Left Header">
+      <b-input v-model="form.leftHeader" :value="form.leftHeader" />
+    </b-field>
+
+    <b-field label="Right Header">
+      <b-input v-model="form.rightHeader" :value="form.rightHeader" />
+    </b-field>
     <div class="row" v-for="(row, index) in form.rows" v-bind:key="index">
       <b-field label="Key">
         <b-input type="text" v-model="form.rows[index].key" :value="form.rows[index].key" />
@@ -19,7 +26,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'FormElementTable',
   props: {
