@@ -29,6 +29,9 @@ bus.$on('errors:401', () => {
 
 const routes = [
   {
+    path: '/codeshare',
+    component: () => import(/* webpackChunkName: "CodeBox" */ '../components/CodeBox.vue'),
+  }, {
     path: '/',
     redirect: {
       name: routeNames.DASHBOARD,

@@ -1,6 +1,9 @@
 <template>
   <div class="email-design-container">
     <div class="mail-card-container">
+    <b-modal v-model="isCodeboxVisible">
+      <CodeBox/>
+    </b-modal>
       <CardMail
         v-for="mail in designs"
         v-bind:key="mail.id"
@@ -17,11 +20,12 @@
 <script>
 import api from '@/api';
 import CardMail from '@/components/CardMail.vue';
+import CodeBox from '@/components/CodeBox.vue';
 
 export default {
   name: 'TemplateList',
   components: {
-    CardMail,
+    CardMail, CodeBox,
   },
   props: {
     project: {
@@ -32,14 +36,15 @@ export default {
   data() {
     return {
       designs: this.project.templates,
+      isCodeboxVisible: false,
     };
   },
   mounted() {
-    // console.log('Got:', this.project);
   },
   methods: {
     handleGetCode(mail) {
       console.log('get-code', mail);
+      this.isCodeboxVisible = true;
     },
     handleEdit(mail) {
       this.$router.push({ name: 'editor', params: { templateId: mail.templateId } });
