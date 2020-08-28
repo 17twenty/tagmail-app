@@ -1,9 +1,13 @@
 <template>
   <div class="email-design-container">
     <div class="mail-card-container">
-    <b-modal v-model="isCodeboxVisible">
-      <CodeBox/>
-    </b-modal>
+      <b-modal
+        width="80%"
+        :can-cancel="['escape', 'x', 'outside']"
+        :active.sync="isCodeboxVisible"
+      >
+        <CodeBox  @close="closeModal()" />
+      </b-modal>
       <CardMail
         v-for="mail in designs"
         v-bind:key="mail.id"
@@ -25,7 +29,8 @@ import CodeBox from '@/components/CodeBox.vue';
 export default {
   name: 'TemplateList',
   components: {
-    CardMail, CodeBox,
+    CardMail,
+    CodeBox,
   },
   props: {
     project: {
@@ -39,9 +44,11 @@ export default {
       isCodeboxVisible: false,
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
+    closeModal() {
+      this.isCodeboxVisible = false;
+    },
     handleGetCode(mail) {
       console.log('get-code', mail);
       this.isCodeboxVisible = true;

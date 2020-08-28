@@ -1,7 +1,9 @@
 <template>
-  <div class="card">
+  <div class="box">
+    <button type="button" class="delete is-pulled-right" @click="close" />
     <p><strong>Pre-generated code</strong></p>
     <p>Working code snippets to send this template via the Tagmail API.</p>
+
     <b-tabs>
       <template v-for="tab in languages">
         <b-tab-item :key="tab.Language" :value="tab.Language" :label="title(tab.Language)">
@@ -50,6 +52,9 @@ export default {
     };
   },
   methods: {
+    close() {
+      this.$emit('close');
+    },
     title(name) {
       return name.charAt(0).toUpperCase() + name.slice(1);
     },
