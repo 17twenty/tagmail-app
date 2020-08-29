@@ -1,12 +1,8 @@
 <template>
   <div class="email-design-container">
     <div class="mail-card-container">
-      <b-modal
-        width="80%"
-        :can-cancel="['escape', 'x', 'outside']"
-        :active.sync="isCodeboxVisible"
-      >
-        <CodeBox  @close="closeModal()" />
+      <b-modal width="80%" :can-cancel="['escape', 'x', 'outside']" :active.sync="isCodeboxVisible">
+        <CodeBox :languages="codeSnippits" @close="closeModal" />
       </b-modal>
       <CardMail
         v-for="mail in designs"
@@ -42,6 +38,7 @@ export default {
     return {
       designs: this.project.templates,
       isCodeboxVisible: false,
+      codeSnippits: [],
     };
   },
   mounted() {},
@@ -49,9 +46,17 @@ export default {
     closeModal() {
       this.isCodeboxVisible = false;
     },
-    handleGetCode(mail) {
-      console.log('get-code', mail);
-      this.isCodeboxVisible = true;
+    async handleGetCode(mail) {
+      try {
+        const { data } = await api.getTemplateTags(mail.templateId);
+        this.codeSnippits = data;
+        this.isCodeboxVisible = true;
+      } catch (error) {
+        this.$buefy.snackbar.open({
+          message: `There was an issue getting code examples for ${mail.templateName}`,
+          type: 'is-danger',
+        });
+      }
     },
     handleEdit(mail) {
       this.$router.push({ name: 'editor', params: { templateId: mail.templateId } });

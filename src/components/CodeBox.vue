@@ -6,10 +6,10 @@
 
     <b-tabs>
       <template v-for="tab in languages">
-        <b-tab-item :key="tab.Language" :value="tab.Language" :label="title(tab.Language)">
+        <b-tab-item :key="tab.Language" :value="tab.language" :label="title(tab.language)">
           <div class="codebox">
             <pre
-              >{{ tab.Sample }}
+              >{{ tab.sample }}
  </pre
             >
           </div>
@@ -22,34 +22,11 @@
 <script>
 export default {
   name: 'CodeBox',
-  props: {},
-  data() {
-    return {
-      languages: [
-        {
-          Language: 'curl',
-          Sample: `curl --request POST  --url "{{.EndPoint}}"   --header 'Authorization: Bearer {{.APIToken}}'
---header 'Content-Type: application/json'
---data '{
-"fromAddress": "you@yourdomain.io",
-"toAddress": "them@theirdomain.com",
-"templateName": "{{.TemplateName}}"{{if .TagList }},
-"tags": {}`,
-        },
-        {
-          Language: 'golang',
-          Sample: 'I AM golang CODE',
-        },
-        {
-          Language: 'node',
-          Sample: 'I AM node CODE',
-        },
-        {
-          Language: 'python',
-          Sample: 'I AM python CODE',
-        },
-      ],
-    };
+  props: {
+    languages: {
+      type: Array,
+      required: true,
+    },
   },
   methods: {
     close() {

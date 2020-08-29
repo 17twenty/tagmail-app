@@ -78,6 +78,11 @@ function postNewAPIKey(payload = {}) {
   return apiPost(url, payload);
 }
 
+function getTemplateTags(templateId) {
+  const url = `${baseUrl}/template/tags/${templateId}`;
+  return apiGet(url);
+}
+
 export default {
   postLogin,
   postTemplate,
@@ -93,4 +98,5 @@ export default {
   deleteTemplateByName,
   getAPIKey,
   postNewAPIKey,
+  getTemplateTags,
 };
