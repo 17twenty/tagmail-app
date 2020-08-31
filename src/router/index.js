@@ -7,6 +7,7 @@ import Dashboard from '../views/Dashboard.vue';
 import * as routeNames from './route-names';
 
 import api from '../api';
+import providerApi from '../api/providers';
 
 Vue.use(VueRouter);
 
@@ -128,10 +129,12 @@ const routes = [
             const resp = await Promise.allSettled([
               api.getProjectTheme(),
               api.getProject(),
+              providerApi.getProvider(),
             ]);
-            const [theme, project] = resp;
+            const [theme, project, provider] = resp;
             to.params.theme = theme.value.data;
             to.params.project = project.value.data;
+            to.params.provider = provider.value.data;
             next();
           } catch (error) {
             next({ name: routeNames.LOGIN });

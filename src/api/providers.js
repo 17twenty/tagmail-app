@@ -1,4 +1,4 @@
-import { apiPost } from './helpers';
+import { apiPost, apiGet } from './helpers';
 
 export const PROVIDER_MAILJET = 'mailjet';
 export const PROVIDER_SES = 'ses';
@@ -34,8 +34,13 @@ function postSendGrid({ privateKey }) {
   });
 }
 
+function getProvider() {
+  return apiGet(baseUrl);
+}
+
 export default {
   postMailJet,
   postSes,
   postSendGrid,
+  getProvider,
 };

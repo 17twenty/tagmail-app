@@ -4,7 +4,8 @@
     <p class="subtitle">You need to configure your sender to allow sending email via Tagmail</p>
     <div class="provider-container">
       <div class="provider-card">
-        <p>You are currently connected to {{ providerName }}</p>
+        <p v-show="providerName">You are currently connected to {{ toUpperCase }}</p>
+        <p v-show="!providerName">You currently don't have a configured conenction</p>
       </div>
       <div class="provider-actions">
         <a @click="openModal">Change provider</a>
@@ -22,10 +23,8 @@
         <div class="key-input">
           <b-input v-model="apiKey" :value="apiKey"></b-input>
           <div class="regenerate">
-            &nbsp; <a @click="requestNewKey()"> Regenerate Key</a>
-            &nbsp; <i
-          :class="{ 'spin': this.isRegenerating }"
-            class="fas fa-redo-alt fa-lg"></i>
+            &nbsp; <a @click="requestNewKey()"> Regenerate Key</a> &nbsp;
+            <i :class="{ spin: this.isRegenerating }" class="fas fa-redo-alt fa-lg"></i>
           </div>
         </div>
       </div>
@@ -45,14 +44,25 @@ export default {
   components: {
     ProviderSelector,
   },
+  props: {
+    provider: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       isLoading: false,
       showModal: false,
-      providerName: 'SES',
+      providerName: this.provider.provider,
       apiKey: '',
       isRegenerating: false,
     };
+  },
+  computed: {
+    toUpperCase() {
+      return this.provider.provider.toUpperCase();
+    },
   },
   methods: {
     closeModal() {
@@ -64,22 +74,31 @@ export default {
     requestNewKey() {
       this.isRegenerating = true;
       const self = this;
-      setTimeout(() => { self.isRegenerating = false; }, 2000);
+      setTimeout(() => {
+        self.isRegenerating = false;
+      }, 2000);
 
-      api.postNewAPIKey().then((res) => {
-        this.apiKey = res.data.accessToken;
-      }).catch((error) => {
-        console.log(error);
-      }).finally(() => {
-      });
+      api
+        .postNewAPIKey()
+        .then((res) => {
+          this.apiKey = res.data.accessToken;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {});
     },
   },
   mounted() {
-    api.getAPIKey().then((res) => {
-      this.apiKey = res.data.accessToken;
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {});
+    api
+      .getAPIKey()
+      .then((res) => {
+        this.apiKey = res.data.accessToken;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {});
   },
 };
 </script>
@@ -124,7 +143,11 @@ export default {
 }
 
 @keyframes spin {
-    0%  {-webkit-transform: rotate(0deg);}
-    100% {-webkit-transform: rotate(360deg);}
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 </style>
