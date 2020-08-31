@@ -69,7 +69,8 @@ export default {
         await api.postPersonalDetailsRego(payload);
         this.nextStep();
       } catch (error) {
-        this.handleErrorNotification(error.data.error_message);
+        console.log(error);
+        this.handleErrorNotification(error.data.errorMessage);
       }
     },
     handleErrorNotification(errorMsg) {
