@@ -4,7 +4,9 @@
     <p class="subtitle">You need to configure your sender to allow sending email via Tagmail</p>
     <div class="provider-container">
       <div class="provider-card">
-        <p v-show="providerName">You are currently connected to {{ toUpperCase }}</p>
+        <p v-show="providerName">
+          You are currently connected to <b>{{ providerName }}</b>
+        </p>
         <p v-show="!providerName">You currently don't have a configured conenction</p>
       </div>
       <div class="provider-actions">
@@ -58,11 +60,6 @@ export default {
       apiKey: '',
       isRegenerating: false,
     };
-  },
-  computed: {
-    toUpperCase() {
-      return this.provider.provider.toUpperCase();
-    },
   },
   methods: {
     closeModal() {
