@@ -4,8 +4,6 @@
     <p class="subtitle">You need to configure your sender to allow sending email via Tagmail</p>
     <div class="provider-container">
       <div class="provider-card">
-        <figure class="image is-128x128">
-        </figure>
         <p>You are currently connected to {{ providerName }}</p>
       </div>
       <div class="provider-actions">
@@ -98,7 +96,6 @@ export default {
   display: flex;
   & p {
     padding: 1em;
-    max-width: 150px;
   }
 }
 .provider-actions {

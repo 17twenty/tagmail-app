@@ -48,9 +48,10 @@ export default {
         .then(() => {
           this.$router.push({ name: DASHBOARD });
         })
-        .catch((error) => {
-          if (error.response.status === 403) {
-            this.formError = error.response.data.error_message;
+        .catch((response) => {
+          console.log(response);
+          if (response.status === 403) {
+            this.formError = response.data.errorMessage;
             return;
           }
           this.formError = 'Something went wrong, please try again in a few moments';

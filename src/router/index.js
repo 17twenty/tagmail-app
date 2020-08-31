@@ -18,7 +18,7 @@ axios.interceptors.response.use((response) => response, (error) => {
     bus.$emit('error:401');
   }
   if (error.response && error.response.data) {
-    return Promise.reject(error.response.data);
+    return Promise.reject(error.response);
   }
   return Promise.reject(error.message);
 });
