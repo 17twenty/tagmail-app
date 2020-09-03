@@ -9,7 +9,7 @@
           registration.
         </small>
       </p>
-      <br>
+      <br />
       <p><small>Glad to have you onboard</small></p>
     </div>
   </div>

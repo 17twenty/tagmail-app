@@ -7,20 +7,13 @@
         v-if="step === 1"
         :form="forms.personal"
       />
-      <FormBusinessDetails
-        key="business"
-        @valid-submit="nextStep"
-        v-if="step === 2"
-        :form="forms.business"
-      />
-      <RegisterAlmostThere key="almost-there" v-if="step === 3" />
+      <RegisterAlmostThere key="almost-there" v-if="step === 2" />
     </transition>
   </div>
 </template>
 
 <script>
 import FormPersonalDetails from '@/components/FormRegisterPersonalDetails.vue';
-import FormBusinessDetails from '@/components/FormRegisterBusinessDetails.vue';
 import RegisterAlmostThere from '@/components/RegisterAlmostThere.vue';
 
 import api from '@/api';
@@ -29,7 +22,6 @@ export default {
   name: 'RegisterContainer',
   components: {
     FormPersonalDetails,
-    FormBusinessDetails,
     RegisterAlmostThere,
   },
   data() {
