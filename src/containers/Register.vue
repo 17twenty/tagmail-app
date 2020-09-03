@@ -34,15 +34,6 @@ export default {
           password1: '',
           password2: '',
         },
-        business: {
-          businessName: '',
-          addressLine1: '',
-          addressLine2: '',
-          city: '',
-          state: '',
-          postCode: '',
-          country: '',
-        },
       },
     };
   },

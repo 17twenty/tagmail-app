@@ -83,6 +83,11 @@ function getTemplateTags(templateId) {
   return apiGet(url);
 }
 
+function getVerifyEmail(token = '') {
+  const url = `${baseUrl}/verify/${token}`;
+  return apiGet(url);
+}
+
 export default {
   postLogin,
   postTemplate,
@@ -99,4 +104,5 @@ export default {
   getAPIKey,
   postNewAPIKey,
   getTemplateTags,
+  getVerifyEmail,
 };

@@ -144,6 +144,25 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/register/verify-email/:jwt',
+    name: routeNames.REGISTER_VERIFY_EMAIL,
+    async beforeEnter(to, from, next) {
+      const token = to.params.jwt;
+      try {
+        await api.getVerifyEmail(token);
+        next({ name: routeNames.REGISTER_PROJECT_DETAILS });
+      } catch (error) {
+        next({ name: routeNames.LOGIN });
+      }
+    },
+    component: () => import(/* webpackChunkName: "register-project-details" */ '../views/RegisterProjectDetails.vue'),
+  },
+  {
+    path: '/register/project-details',
+    name: routeNames.REGISTER_PROJECT_DETAILS,
+    component: () => import(/* webpackChunkName: "register-project-details" */ '../views/RegisterProjectDetails.vue'),
+  },
 ];
 
 const router = new VueRouter({
