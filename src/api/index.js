@@ -40,6 +40,11 @@ function postPersonalDetailsRego(form = {}) {
   return apiPost(url, form);
 }
 
+function postProject(payload = {}) {
+  const url = `${baseUrl}/project`;
+  return apiPost(url, payload);
+}
+
 function getProject() {
   const url = `${baseUrl}/project`;
   return apiGet(url);
@@ -94,6 +99,7 @@ export default {
   getLogout,
   postPreview,
   postPersonalDetailsRego,
+  postProject,
   getProject,
   postProjectLogo,
   getTemplate,

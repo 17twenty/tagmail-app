@@ -147,6 +147,7 @@ const routes = [
   {
     path: '/register/verify-email/:jwt',
     name: routeNames.REGISTER_VERIFY_EMAIL,
+    props: true,
     async beforeEnter(to, from, next) {
       const token = to.params.jwt;
       try {
