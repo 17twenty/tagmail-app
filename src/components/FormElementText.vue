@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-field label="Text">
-      <b-input type="textarea" v-model="form.text" :value="form.text" />
+      <VueSimplemde v-model="form.text" ref="markdownEditor" />
     </b-field>
     <b-field label="Text Weight">
       <b-select expanded v-model.trim="form.weight" placeholder="weight...">
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import VueSimplemde from 'vue-simplemde';
+
 export default {
   name: 'FormElementText',
   props: {
@@ -29,7 +31,12 @@ export default {
       required: true,
     },
   },
+  components: {
+    VueSimplemde,
+  },
 };
 </script>
 
-<style></style>
+<style>
+@import '~simplemde/dist/simplemde.min.css';
+</style>
