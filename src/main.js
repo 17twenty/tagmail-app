@@ -6,7 +6,6 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 
-Vue.component('vue-simplemde', VueSimplemde);
 
 Vue.filter('formatDate', (value) => {
   if (value) {
