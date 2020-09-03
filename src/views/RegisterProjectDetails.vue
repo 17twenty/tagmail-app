@@ -38,7 +38,7 @@ export default {
     return {
       isLoading: false,
       business: {
-        businessName: '',
+        projectName: '',
         addressLine1: '',
         addressLine2: '',
         city: '',

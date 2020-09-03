@@ -2,7 +2,7 @@
   <form @submit.prevent="emitSubmit">
     <br />
     <b-field label="Project / Business Name">
-      <b-input required v-model="form.businessName" :value="form.businessName"></b-input>
+      <b-input required v-model="form.projectName" :value="form.projectName"></b-input>
     </b-field>
     <b-field label="Address Line 1">
       <b-input required v-model="form.addressLine1" :value="form.addressLine1"></b-input>
