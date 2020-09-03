@@ -6,7 +6,6 @@ import App from './App.vue';
 import store from './store';
 import router from './router';
 
-
 Vue.filter('formatDate', (value) => {
   if (value) {
     const date = new Date(value);
