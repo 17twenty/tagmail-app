@@ -40,6 +40,11 @@ function postPersonalDetailsRego(form = {}) {
   return apiPost(url, form);
 }
 
+function postProject(payload = {}) {
+  const url = `${baseUrl}/project`;
+  return apiPost(url, payload);
+}
+
 function getProject() {
   const url = `${baseUrl}/project`;
   return apiGet(url);
@@ -83,12 +88,18 @@ function getTemplateTags(templateId) {
   return apiGet(url);
 }
 
+function getVerifyEmail(token = '') {
+  const url = `${baseUrl}/verify/${token}`;
+  return apiGet(url);
+}
+
 export default {
   postLogin,
   postTemplate,
   getLogout,
   postPreview,
   postPersonalDetailsRego,
+  postProject,
   getProject,
   postProjectLogo,
   getTemplate,
@@ -99,4 +110,5 @@ export default {
   getAPIKey,
   postNewAPIKey,
   getTemplateTags,
+  getVerifyEmail,
 };

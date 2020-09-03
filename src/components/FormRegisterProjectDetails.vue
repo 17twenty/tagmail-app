@@ -1,10 +1,8 @@
 <template>
   <form @submit.prevent="emitSubmit">
-    <p><small>
-      Almost there, we just need a few more details to make sure you’re sending emails compliant with <a target="_new" href="https://en.wikipedia.org/wiki/Email_spam_legislation_by_country">international anti-spam laws</a>.
-    </small></p><br>
+    <br />
     <b-field label="Project / Business Name">
-      <b-input required v-model="form.businessName" :value="form.businessName"></b-input>
+      <b-input required v-model="form.projectName" :value="form.projectName"></b-input>
     </b-field>
     <b-field label="Address Line 1">
       <b-input required v-model="form.addressLine1" :value="form.addressLine1"></b-input>
@@ -28,24 +26,30 @@
         <b-input required v-model="form.country" :value="form.country"></b-input>
       </b-field>
     </b-field>
-      <div class="form-action-buttons">
-        <b-input
-          expanded
-          type="submit"
-          custom-class="button is-primary"
-          value="Next..."
-        />
-      </div>
+    <div class="form-action-buttons">
+      <b-input
+        :loading="isLoading"
+        expanded
+        type="submit"
+        custom-class="button is-primary"
+        value="Next..."
+      />
+    </div>
   </form>
 </template>
 
 <script>
 export default {
-  name: 'FormRegisterBusinessDetails',
+  name: 'FormRegisterProjectDetails',
   props: {
     form: {
       type: Object,
       required: true,
+    },
+    isLoading: {
+      type: Boolean,
+      required: false,
+      default: () => false,
     },
   },
   methods: {

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import axios from 'axios';
 import Editor from '../views/Editor.vue';
 import Dashboard from '../views/Dashboard.vue';
+import VerifyEmail from '../views/VerifyEmail.vue';
 import * as routeNames from './route-names';
 
 import api from '../api';
@@ -143,6 +144,17 @@ const routes = [
         component: () => import(/* webpackChunkName: "preferences" */ '../views/Preferences.vue'),
       },
     ],
+  },
+  {
+    path: '/register/verify-email/:jwt',
+    name: routeNames.REGISTER_VERIFY_EMAIL,
+    props: true,
+    component: VerifyEmail,
+  },
+  {
+    path: '/register/project-details',
+    name: routeNames.REGISTER_PROJECT_DETAILS,
+    component: () => import(/* webpackChunkName: "register-project-details" */ '../views/RegisterProjectDetails.vue'),
   },
 ];
 
