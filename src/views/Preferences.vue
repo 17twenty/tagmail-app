@@ -7,7 +7,9 @@
         <p v-show="providerName">
           You are currently connected to <b>{{ providerName }}</b>
         </p>
-        <p v-show="!providerName">You currently don't have a configured conenction</p>
+        <p v-show="!providerName">You currently don't have a configured connection.<br>
+          You will need to choose/enable one to send emails.
+        </p>
       </div>
       <div class="provider-actions">
         <a @click="openModal">Change provider</a>
