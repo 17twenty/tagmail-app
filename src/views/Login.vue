@@ -8,9 +8,15 @@
             @valid-submit="handleSubmit"
             :errorMessage="formError"
             :isLoading="isLoading"
-            :form="login" />
+            :form="login"
+          />
         </b-tab-item>
         <b-tab-item label="Register">
+          <b-notification>
+            Tagmail is currently in beta. If you signup today there are no charges but we will reach
+            out in future for a 15 minute catchup about how you have been doing and the problem
+            Tagmail has solved for you.
+          </b-notification>
           <Register />
         </b-tab-item>
       </b-tabs>
@@ -43,8 +49,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      API
-        .postLogin({ username: this.login.email, password: this.login.password })
+      API.postLogin({ username: this.login.email, password: this.login.password })
         .then(() => {
           this.$router.push({ name: DASHBOARD });
         })
