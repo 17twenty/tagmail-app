@@ -1,37 +1,47 @@
 <template>
-  <div :class="['colour-picker-container', focusStuff]">
-    <input
-      :key="keyIndicator"
-      type="color"
-      placeholder="#ff0000"
-      pattern="#[0-9A-Fa-f]{6}"
-      :value="value"
-      @input="handleInput"
-      @change="handleInput"
-    />
+  <div :class="['colour-picker-container']" ref="colorpicker">
+    <span @click="handleClick" class="swatch" :style="{ 'background-color': value }" />
+    <chrome-picker class="top" :value="value" @input="handleInput" v-if="show" />
   </div>
 </template>
 
 <script>
+import { Chrome } from 'vue-color';
+
 export default {
   name: 'InputColourPicker.vue',
   props: {
     value: String,
   },
+  components: {
+    'chrome-picker': Chrome,
+  },
   data() {
     return {
-      keyIndicator: 0,
+      show: false,
     };
   },
-  computed: {
-    focusStuff() {
-      return this.focus ? 'some-thing' : '';
-    },
+  mounted() {
+    this.elBody = document.getElementById('app');
+    this.elBody.addEventListener('click', this.documentClick, false);
+  },
+  unmounted() {
+    this.elBody = document.getElementById('app');
+    this.elBody.removeEventListener('click', this.documentClick);
   },
   methods: {
     handleInput(event) {
-      this.keyIndicator += 1;
-      this.$emit('input', event.target.value);
+      this.$emit('input', event.hex);
+    },
+    handleClick() {
+      this.show = !this.show;
+    },
+    documentClick(event) {
+      const el = this.$refs.colorpicker;
+      const { target } = event;
+      if (el !== target && !el.contains(target)) {
+        this.show = false;
+      }
     },
   },
 };
@@ -39,24 +49,17 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
-
+.top {
+  position: absolute;
+  z-index: 9999999;
+}
 .colour-picker-container {
   width: 100%;
   height: 100%;
-  & input {
-    outline: none;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-    border: none;
-  }
 }
-.some-thing {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
+.swatch {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 </style>
