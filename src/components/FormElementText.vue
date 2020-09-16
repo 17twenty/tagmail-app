@@ -5,8 +5,9 @@
         :options="editorConfig"
         ref="toastuiEditor"
         :initialValue="form.text"
-        initialEditType="wysiwyg"
+        previewStyle="tab"
         @change="handleChange"
+        :previewHighlight="false"
       />
     </b-field>
     <b-field label="Text Weight">
