@@ -31,12 +31,7 @@
     </div>
 
     <div class="right">
-      <form id="reloader" target="preview" method="POST" :action="tagmailApi">
-        <input type="hidden" name="items" :value="stringIt(items)" />
-        <input type="hidden" name="template" :value="stringIt(themeConfig)" />
-      </form>
       <iframe
-        :src="tagmailApi"
         id="preview"
         name="preview"
         width="100%"
@@ -128,9 +123,6 @@ export default {
     };
   },
   computed: {
-    tagmailApi() {
-      return `${process.env.VUE_APP_TAGMAIL_API_URL}/app/template/preview`;
-    },
   },
   methods: {
     getTemplateName() {
@@ -185,7 +177,12 @@ export default {
       return elementForm[elementType];
     },
     updatePreview() {
-      document.getElementById('reloader').submit();
+      api.postPreviewTemplate({ items: this.items, theme: this.themeConfig })
+        .then((res) => {
+          const iframe = document.getElementById('preview');
+          const iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+          iframedoc.body.innerHTML = res.data;
+        });
       this.dirty = false;
     },
     addItem(value) {
@@ -222,7 +219,7 @@ export default {
       setTimeout(async () => {
         this.dirty = false;
         await this.updatePreview();
-      }, 1000);
+      }, 500);
     },
   },
 };
