@@ -182,9 +182,6 @@ export default {
           const iframe = document.getElementById('preview');
           const iframedoc = iframe.contentDocument || iframe.contentWindow.document;
           iframedoc.body.innerHTML = res.data;
-        })
-        .finally(() => {
-          this.isSaving = false;
         });
       this.dirty = false;
     },
