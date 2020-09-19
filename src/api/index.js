@@ -93,6 +93,11 @@ function getVerifyEmail(token = '') {
   return apiGet(url);
 }
 
+function postPreviewTemplate(payload = {}) {
+  const url = `${baseUrl}/template/preview`;
+  return apiPost(url, payload);
+}
+
 export default {
   postLogin,
   postTemplate,
@@ -111,4 +116,5 @@ export default {
   postNewAPIKey,
   getTemplateTags,
   getVerifyEmail,
+  postPreviewTemplate,
 };
